@@ -2,6 +2,7 @@ package com.petproject.java.Inventory.Management.dao;
 
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,10 @@ public class ToolDaoImpl implements ToolDao{
 
     @Override
     public List<Tool> findAll() {
-        return null;
+        TypedQuery<Tool> theQuery = entityManager.createQuery("from Tool",Tool.class);
+
+        List<Tool> tools = theQuery.getResultList();
+
+        return tools;
     }
 }
