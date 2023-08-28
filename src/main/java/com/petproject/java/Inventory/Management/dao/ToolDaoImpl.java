@@ -40,6 +40,7 @@ public class ToolDaoImpl implements ToolDao{
 
     @Override
     public void deleteById(int theId) {
-
+        Tool theTool = entityManager.find(Tool.class, theId);
+        entityManager.remove(theTool);
     }
 }
