@@ -1,6 +1,7 @@
 package com.petproject.java.Inventory.Management.dao;
 
 import com.petproject.java.Inventory.Management.enntity.Tool;
+import com.petproject.java.Inventory.Management.service.ToolService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,23 @@ public class ToolDaoImpl implements ToolDao{
         List<Tool> tools = theQuery.getResultList();
 
         return tools;
+    }
+
+    @Override
+    public Tool findById(int theId) {
+        Tool theTool = entityManager.find(Tool.class, theId);
+
+        return theTool;
+    }
+
+    @Override
+    public Tool save(Tool theTool) {
+        Tool dbTool = entityManager.merge(theTool);
+        return dbTool;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+
     }
 }
