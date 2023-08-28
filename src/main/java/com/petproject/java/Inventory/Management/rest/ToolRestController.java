@@ -4,6 +4,7 @@ import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,16 @@ public class ToolRestController {
     @GetMapping("/tools")
     public List<Tool> findAll(){
         return toolService.findAll();
+    }
+
+    //reading a single tool
+    @GetMapping("/tools/{toolId}")
+    public Tool getTool(@PathVariable int toolId) {
+        Tool theTool = toolService.findById(toolId);
+
+        if (theTool == null){
+            throw new RuntimeException("Tool id not found " + toolId);
+        }
+        return theTool;
     }
 }
