@@ -2,11 +2,13 @@ package com.petproject.java.Inventory.Management.enntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tool")
 public class Tool {
+    @Id
     @Column(name="id")
     private int id;
     @Column(name="part_number")

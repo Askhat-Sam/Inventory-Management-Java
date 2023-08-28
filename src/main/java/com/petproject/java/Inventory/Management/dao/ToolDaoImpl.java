@@ -11,13 +11,13 @@ import java.util.List;
 public class ToolDaoImpl implements ToolDao{
     private EntityManager entityManager;
     @Autowired
-    public ToolDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public ToolDaoImpl(EntityManager theEntityManager) {
+        this.entityManager = theEntityManager;
     }
 
     @Override
     public List<Tool> findAll() {
-        TypedQuery<Tool> theQuery = entityManager.createQuery("from Tool",Tool.class);
+        TypedQuery<Tool> theQuery = entityManager.createQuery("from Tool", Tool.class);
 
         List<Tool> tools = theQuery.getResultList();
 
