@@ -40,4 +40,16 @@ public class ToolRestController {
 
         return  dbTool;
     }
+
+    @PutMapping("/tools")
+    public Tool updateTool(@RequestBody Tool theTool){
+        Tool dbTool = toolService.save(theTool);
+
+        return  dbTool;
+    }
+
+//    @DeleteMapping("/tool/{toolId}")
+//    public void deleteTool(@PathVariable int toolId){
+//      toolService.deleteById(toolId);
+//    }
 }
