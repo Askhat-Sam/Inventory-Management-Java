@@ -48,8 +48,16 @@ public class ToolRestController {
         return  dbTool;
     }
 
-//    @DeleteMapping("/tool/{toolId}")
-//    public void deleteTool(@PathVariable int toolId){
-//      toolService.deleteById(toolId);
-//    }
+    @DeleteMapping("/tools/{toolId}")
+    public String deleteTool(@PathVariable int toolId){
+      Tool tempTool = toolService.findById(toolId);
+
+      //throw exception if null
+        if (tempTool==null){
+            throw new RuntimeException("Tool id not found "+ toolId);
+        }
+        toolService.deleteById(toolId);
+
+        return "Deleted tool id - " + toolId;
+    }
 }

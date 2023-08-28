@@ -1,38 +1,47 @@
 package com.petproject.java.Inventory.Management.service;
 
-import com.petproject.java.Inventory.Management.dao.ToolDao;
+import com.petproject.java.Inventory.Management.dao.ToolRepository;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ToolServiceImpl implements ToolService{
 
-    private ToolDao toolDao;
+    private ToolRepository toolRepository;
     @Autowired
-    public ToolServiceImpl(ToolDao toolDao) {
-        this.toolDao = toolDao;
+    public ToolServiceImpl(ToolRepository toolRepository) {
+        this.toolRepository = toolRepository;
     }
 
     @Override
     public List<Tool> findAll() {
-        return toolDao.findAll();
+        return toolRepository.findAll();
     }
 
     @Override
     public Tool findById(int theId) {
-        return toolDao.findById(theId);
+        Optional<Tool> result = toolRepository.findById(theId);
+        Tool theTool = null;
+        if (result.isPresent()) {
+            theTool = result.get();
+        } else {
+            throw new RuntimeException("Did not find tool id " + theId);
+        }
+        return theTool;
     }
-    @Transactional
+
     @Override
     public Tool save(Tool theTool) {
-        return toolDao.save(theTool);
+        return toolRepository.save(theTool);
     }
-    @Transactional
+
     @Override
     public void deleteById(int theId) {
-        toolDao.deleteById(theId);
+        toolRepository.deleteById(theId);
     }
 }
