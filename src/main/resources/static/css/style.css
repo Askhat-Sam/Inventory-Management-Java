@@ -1,5 +1,9 @@
 .funny{
     font-style: italic;
     color:red;
-    font-size: 40px;
+    font-size: 90px;
+}
+
+.clickable-row:hover{
+     background-color: yellow;
 }
