@@ -12,11 +12,13 @@
 
         <p class="h4 mb-4 mt-4">Add/update form</p>
 
-        <form action="#" th:action="@{/tools/save}" th:object="${tools}" method="POST">
+        <form action="#" th:action="@{/tools/save}" th:object="${tool}" method="POST">
             <input type="hidden" th:field="*{id}">
             <input type="text" th:field="*{partNumber}" class="form-control mb-4 w-25" placeholder="Part number">
             <input type="text" th:field="*{serialNumber}" class="form-control mb-4 w-25" placeholder="Serial number">
             <input type="text" th:field="*{description}" class="form-control mb-4 w-25" placeholder="Description">
+
+            <span th:if="${#fields.hasErrors('partNumber')}" th:errors="*{partNumber}" class="error"></span>
 
             <button type="submit" class="btn btn-info col-3">Save</button>
         </form>

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tool")
@@ -11,6 +12,7 @@ public class Tool {
     @Id
     @Column(name="id")
     private int id;
+    @NotNull(message = "is required")
     @Column(name="part_number")
     private String partNumber;
     @Column(name="serial_number")

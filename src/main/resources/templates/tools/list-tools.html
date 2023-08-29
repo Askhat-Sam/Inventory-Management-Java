@@ -39,6 +39,7 @@
             <th>Part number</th>
             <th>Serial number</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
         </thead>
 
@@ -47,7 +48,18 @@
             <td th:text="${tool.id}" />
             <td th:text="${tool.partNumber}"/>
             <td th:text="${tool.serialNumber}"/>
-            <td th:text="${tool.description}"/>
+            <td th:text="${tool.description}">New</td>
+            <td>
+                <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm">Edit</a>
+
+                <a th:href="@{/tools/delete(toolId=${tool.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false">
+                    Delete
+                </a>
+            </td>
+
+
         </tr>
         </tbody>
 
