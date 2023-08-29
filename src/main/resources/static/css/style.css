@@ -7,3 +7,8 @@
 .clickable-row:hover{
      background-color: #ced4da;
 }
+
+.errorMessage{
+    font-style: italic;
+    color:red;
+}

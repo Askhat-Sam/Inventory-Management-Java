@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="tool")
@@ -12,11 +13,16 @@ public class Tool {
     @Id
     @Column(name="id")
     private int id;
-    @NotNull(message = "is required")
+
+    @Size(min=1, message = "field is required")
     @Column(name="part_number")
     private String partNumber;
+
+    @Size(min=1, message = "field is required")
     @Column(name="serial_number")
     private String serialNumber;
+
+    @Size(min=1, message = "field is required")
     @Column(name="description")
     private String description;
 
