@@ -33,7 +33,7 @@ public class ToolController {
     public String showForm(Model theModel){
         //create model attribute to bind form data
         Tool theTool = new Tool();
-        theModel.addAttribute("tool", theTool);
+        theModel.addAttribute("tools", theTool);
         return "tools/tool-form";
     }
 }

@@ -18,6 +18,27 @@
         Add tool
     </a>
 
+    <table class="table table-bordered table-stripped">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Part number</th>
+                <th>Serial number</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="tool : ${tools}}">
+                <td th:text-${tool.partNumber}></td>
+                <td th:text-${tool.serialNumber}></td>
+                <td th:text-${tool.description}></td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
 </div>
 
 </body>
