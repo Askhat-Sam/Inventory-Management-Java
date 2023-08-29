@@ -29,10 +29,11 @@
         </thead>
 
         <tbody>
-            <tr th:each="tool : ${tools}}">
-                <td th:text-${tool.partNumber}></td>
-                <td th:text-${tool.serialNumber}></td>
-                <td th:text-${tool.description}></td>
+            <tr th:each="tool : ${tools}">
+                <td th:text="${tool.id}"/>
+                <td th:text="${tool.partNumber}"/>
+                <td th:text="${tool.serialNumber}"/>
+                <td th:text="${tool.description}"/>
             </tr>
         </tbody>
 

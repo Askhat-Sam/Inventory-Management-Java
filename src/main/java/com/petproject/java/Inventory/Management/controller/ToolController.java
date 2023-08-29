@@ -6,6 +6,8 @@ import com.petproject.java.Inventory.Management.service.ToolService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -35,5 +37,13 @@ public class ToolController {
         Tool theTool = new Tool();
         theModel.addAttribute("tools", theTool);
         return "tools/tool-form";
+    }
+
+    @PostMapping("/save")
+    public String saveTool(@ModelAttribute("tool") Tool theTool){
+        //save tool
+        toolService.save(theTool);
+        //use a redirect to prevent dublicate submission
+        return "redirect:/tools/list";
     }
 }
