@@ -13,29 +13,29 @@
 
         <p class="h4 mb-4 mt-4">Add/update form</p>
 
-        <form action="#" th:action="@{/tools/search}" th:object="${tool}" method="POST">
+        <form action="#" th:action="@{/tools/save}" th:object="${tool}" method="POST">
             <input type="hidden" th:field="*{id}">
             <br><br>
 
-<!--            <div class="row">-->
-<!--                <div class="col">-->
-<!--                    <input type="text" th:field="*{partNumber}" class="form-control mb-4 w-75" placeholder="Part number">-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                    &lt;!&ndash;error message if present&ndash;&gt;-->
-<!--                    <span th:if="${#fields.hasErrors('partNumber')}" th:errors="*{partNumber}" class="errorMessage"></span>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="row">
+                <div class="col">
+                    <input type="text" th:field="*{partNumber}" class="form-control mb-4 w-75" placeholder="Part number">
+                </div>
+                <div class="col">
+                    <!--error message if present-->
+                    <span th:if="${#fields.hasErrors('partNumber')}" th:errors="*{partNumber}" class="errorMessage"></span>
+                </div>
+            </div>
 
-<!--            <div class="row">-->
-<!--                <div class="col">-->
-<!--                    <input type="text" th:field="*{serialNumber}" class="form-control mb-4 w-75" placeholder="Serial number">-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                    &lt;!&ndash;error message if present&ndash;&gt;-->
-<!--                    <span th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}" class="errorMessage"></span>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="row">
+                <div class="col">
+                    <input type="text" th:field="*{serialNumber}" class="form-control mb-4 w-75" placeholder="Serial number">
+                </div>
+                <div class="col">
+                    <!--error message if present-->
+                    <span th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}" class="errorMessage"></span>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col">
@@ -44,6 +44,16 @@
                 <div class="col">
                     <!--error message if present-->
                     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errorMessage"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" th:field="*{location}" class="form-control mb-4 w-75" placeholder="Location">
+                </div>
+                <div class="col">
+                    <!--error message if present-->
+                    <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="errorMessage"></span>
                 </div>
             </div>
 

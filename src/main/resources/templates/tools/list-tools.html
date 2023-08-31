@@ -11,45 +11,29 @@
 </head>
 <body>
 
-
-
 <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a class="navbar-brand ">Inventory management</a>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+<!--        <a class="navbar-brand ">x</a>-->
+        <form th:action="@{/tools/list}" class="d-flex" role="search">
+            <input name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
+            &nbsp;
+            <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
+            &nbsp;
+            <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm col-3">
+                Add tool
+            </a>
         </form>
     </div>
 </nav>
 
 <div>
-    <form th:action="@{/tools/list}">
-        Filter:
-        <input type="text" name="keyword" th:value="${keyword}"/>
-        &nbsp;
-        <input type="submit" value="search"/>
-        <input type="button" value="clear" onclick="clearFilter()"/>
-    </form>
 
 </div>
 <br>
 
 
 <div class="container-fluid">
-<!--    <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm mb-3">-->
-<!--        Add tool-->
-<!--    </a>-->
-
-
-
-
-
-<!--    <form action="#" th:action="@{/tools/search}" th:object="${tool}" method="POST">-->
-<!--<-->
-
-<!--        <button type="submit" class="btn btn-info col-5">Save</button>-->
-<!--    </form>-->
 
     <table class="table">
         <thead class="table-dark">
@@ -58,6 +42,7 @@
             <th>Part number</th>
             <th>Serial number</th>
             <th>Description</th>
+            <th>Location</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -67,7 +52,8 @@
             <td th:text="${tool.id}" />
             <td th:text="${tool.partNumber}"/>
             <td th:text="${tool.serialNumber}"/>
-            <td th:text="${tool.description}">New</td>
+            <td th:text="${tool.description}"/>
+            <td th:text="${tool.location}"/>
             <td>
                 <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm">Edit</a>
 

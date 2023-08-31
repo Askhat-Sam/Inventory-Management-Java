@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -25,14 +24,25 @@ public class Tool {
     @Size(min=1, message = "field is required")
     @Column(name="description")
     private String description;
-
+    @Size(min=1, message = "field is required")
+    @Column(name="location")
+    private String location;
     public Tool() {
     }
 
-    public Tool(String partNumber, String serialNumber, String description) {
+    public Tool(String partNumber, String serialNumber, String description, String location) {
         this.partNumber = partNumber;
         this.serialNumber = serialNumber;
         this.description = description;
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getId() {
