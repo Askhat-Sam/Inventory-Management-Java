@@ -26,7 +26,7 @@
 <div>
     <form th:action="@{/tools/list}">
         Filter:
-        <input type="text" name="keyword"/>
+        <input type="text" name="keyword" th:value="${keyword}"/>
         &nbsp;
         <input type="submit" value="search"/>
         <input type="button" value="clear"/>

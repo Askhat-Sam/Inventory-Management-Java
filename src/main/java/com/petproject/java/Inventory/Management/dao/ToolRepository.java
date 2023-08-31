@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ToolRepository extends JpaRepository<Tool, Integer> {
     //Custom query
-    @Query(value = "select * from tool s where s.description like %:keyword% or s.id like %:keyword% " +
-            "or s.part_number like %:keyword% or s.serial_number like %:keyword%", nativeQuery = true)
+    @Query(value = "SELECT * from tool s WHERE " +
+            "CONCAT(s.id, s.part_number, s.serial_number, s.description) like %:keyword%", nativeQuery = true)
     public List<Tool> findAll(@Param("keyword") String keyword);
 }
 

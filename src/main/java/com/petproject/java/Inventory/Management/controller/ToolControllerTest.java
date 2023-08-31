@@ -36,8 +36,7 @@ public class ToolControllerTest {
     public String listTools(Model theModel, @Param("keyword") String keyword){
         List<Tool> theTools = toolService.findAll(keyword);
         theModel.addAttribute("tools", theTools);
-
-        System.out.println("the model after update: " + theModel);
+        theModel.addAttribute("keyword", keyword);
         return "tools/list-tools";
     }
 
