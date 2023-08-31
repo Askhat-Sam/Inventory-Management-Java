@@ -23,14 +23,33 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-        Add tool
-    </a>
+<div>
+    <form th:action="@{/tools/list}">
+        Filter:
+        <input type="text" name="keyword"/>
+        &nbsp;
+        <input type="submit" value="search"/>
+        <input type="button" value="clear"/>
+    </form>
 
-    <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-        Info
-    </a>
+</div>
+<br>
+
+
+<div class="container-fluid">
+<!--    <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm mb-3">-->
+<!--        Add tool-->
+<!--    </a>-->
+
+
+
+
+
+<!--    <form action="#" th:action="@{/tools/search}" th:object="${tool}" method="POST">-->
+<!--<-->
+
+<!--        <button type="submit" class="btn btn-info col-5">Save</button>-->
+<!--    </form>-->
 
     <table class="table">
         <thead class="table-dark">

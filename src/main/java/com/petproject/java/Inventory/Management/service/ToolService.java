@@ -6,10 +6,13 @@ import java.util.List;
 
 public interface ToolService {
 
-    List<Tool> findAll();
+    List<Tool> findAll(String keyword);
     Tool findById(int theId);
 
     void save(Tool theTool);
 
     void deleteById(int theId);
+
+    //get tool by keyword
+    public List<Tool> findByKeyWord(String keyword);
 }
