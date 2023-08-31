@@ -29,7 +29,7 @@
         <input type="text" name="keyword" th:value="${keyword}"/>
         &nbsp;
         <input type="submit" value="search"/>
-        <input type="button" value="clear"/>
+        <input type="button" value="clear" onclick="clearFilter()"/>
     </form>
 
 </div>
@@ -87,6 +87,11 @@
 </div>
 
 </div>
+<script type="text/javascript">
+    function clearFilter(){
+        window.location = '/tools/list';
+    }
 
+</script>
 </body>
 </html>
