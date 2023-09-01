@@ -22,7 +22,8 @@ public class ToolController {
     }
 
     @RequestMapping("/list")
-    public String listTools(Model theModel, @Param("keyword") String keyword){
+    public String listTools(Model theModel, @Param("keyword") String keyword, @Valid String option){
+        System.out.println("this is from select "+ option);
         List<Tool> theTools = toolService.findAll(keyword);
         theModel.addAttribute("tools", theTools);
         theModel.addAttribute("keyword", keyword);

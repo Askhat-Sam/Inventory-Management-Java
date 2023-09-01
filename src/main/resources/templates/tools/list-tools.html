@@ -14,8 +14,18 @@
 <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;">
     <div class="container-fluid">
 <!--        <a class="navbar-brand ">x</a>-->
-        <form th:action="@{/tools/list}" class="d-flex" role="search">
+        <form th:action="@{/tools/list}" class="d-flex" role="search" modelAttribute="selectedOption">
             <input name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">
+                <option selected>All</option>
+                <option value="Id">Id</option>
+                <option value="Part Number">Part Number</option>
+                <option value="Serial Number">Serial Number</option>
+                <option value="Description">Description</option>
+                <option value="Location">Location</option>
+            </select>
+
             <button class="btn btn-outline-success" type="submit">Search</button>
             &nbsp;
             <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
