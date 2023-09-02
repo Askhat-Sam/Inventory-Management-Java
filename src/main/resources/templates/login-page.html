@@ -19,8 +19,8 @@
 
 <form action="#" th:action="@{/authenticateTheUser}" method="POST">
 
-    <div th:if="${param.error}">
-        <i class="failed">Sorry! You entered invalid username/password</i>
+    <div th:if="${param.logout}">
+        <i class="failed">You have been logged out</i>
     </div>
     <p>
         Username:<input type="text" name="username">
