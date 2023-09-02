@@ -38,6 +38,8 @@ public class ToolController {
                         }
                     }
                     theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword); // to keep  previously selected option
+                    theModel.addAttribute("option", option); // to keep  previous input in search input box
                     return "tools/list-tools";
                 case "Part Number":
                     for (Tool tool: theTools) {
@@ -46,6 +48,7 @@ public class ToolController {
                         }
                     }
                     theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword); // to keep  previous input in search input box
                     return "tools/list-tools";
                 case "Serial Number":
                     for (Tool tool: theTools) {
@@ -54,6 +57,8 @@ public class ToolController {
                         }
                     }
                     theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword);
+                    theModel.addAttribute("option", option); // to keep  previous input in search input box
                     return "tools/list-tools";
                 case "Description":
                     for (Tool tool: theTools) {
@@ -63,6 +68,8 @@ public class ToolController {
                         }
                     }
                     theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword);
+                    theModel.addAttribute("option", option); // to keep  previous input in search input box
                     return "tools/list-tools";
                 case "Location":
                     for (Tool tool: theTools) {
@@ -72,6 +79,8 @@ public class ToolController {
                         }
                     }
                     theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword);
+                    theModel.addAttribute("option", option); // to keep  previous input in search input box
                     return "tools/list-tools";
                 default:
                     // code block
@@ -79,6 +88,8 @@ public class ToolController {
         }
 
         theModel.addAttribute("tools", theTools);
+        theModel.addAttribute("keyword", keyword); // to keep  previously selected option
+        theModel.addAttribute("option", option); // to keep  previous input in search input box
         return "tools/list-tools";
     }
 
