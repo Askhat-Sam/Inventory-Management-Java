@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -36,6 +36,12 @@
                 Add tool
             </a>
         </form>
+        <!--display username and role-->
+        <p>
+            User:<span sec:authentication="principal.username"></span>
+            Role(s):<span sec:authentication="principal.authorities"></span>
+            <br><br>
+        </p>
 
 
         <form action="#" th:action="@{/logout}" method="POST">
