@@ -26,7 +26,7 @@
                 <option value="Location">Location</option>
             </select>
 
-            <button class="btn btn-outline-success" type="submit" onclick="defaultValue()">Search</button>
+            <button class="btn btn-outline-success" type="submit" onclick="defaultInputValue()">Search</button>
             &nbsp;
             <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
             &nbsp;
@@ -88,7 +88,7 @@
         window.location = '/tools/list';
     }
 
-    filter defaultValue(){
+    filter defaultInputValue(){
         document.getElementById("searchText").value = "Previous value";
     }
 
