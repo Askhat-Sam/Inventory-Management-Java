@@ -18,10 +18,11 @@ public class ToolServiceImpl implements ToolService{
     @Override
     public List<Tool> findAll(String keyword) {
         if (keyword !=null){
-            return toolRepository.findAll(keyword);
+            return toolRepository.findAll( keyword);
         }
         return toolRepository.findAll();
     }
+
 
     @Override
     public Tool findById(int theId) {
@@ -52,8 +53,5 @@ public class ToolServiceImpl implements ToolService{
         return null;
     }
 
-//    @Override
-//    public List<Tool> findByKeyWord(String keyword) {
-//        return toolRepository.findByKeyWord(keyword);
-//    }
+
 }

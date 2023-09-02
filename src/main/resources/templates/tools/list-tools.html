@@ -15,7 +15,7 @@
     <div class="container-fluid">
 <!--        <a class="navbar-brand ">x</a>-->
         <form th:action="@{/tools/list}" class="d-flex" role="search" modelAttribute="selectedOption">
-            <input name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
             <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">
                 <option selected>All</option>
@@ -26,7 +26,7 @@
                 <option value="Location">Location</option>
             </select>
 
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit" onclick="defaultValue()">Search</button>
             &nbsp;
             <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
             &nbsp;
@@ -86,6 +86,10 @@
 <script type="text/javascript">
     function clearFilter(){
         window.location = '/tools/list';
+    }
+
+    filter defaultValue(){
+        document.getElementById("searchText").value = "Previous value";
     }
 
 </script>

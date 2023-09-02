@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,11 +23,64 @@ public class ToolController {
     }
 
     @RequestMapping("/list")
-    public String listTools(Model theModel, @Param("keyword") String keyword, @Valid String option){
-        System.out.println("this is from select "+ option);
+    public String listTools(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
+        System.out.println("Selected option "+ option);
+
         List<Tool> theTools = toolService.findAll(keyword);
+        List<Tool> filteredTools = new ArrayList<>();
+//        System.out.println(theTools);
+        if (option!=null){
+            switch(option) {
+                case "Id":
+                    for (Tool tool: theTools) {
+                        if (String.valueOf(tool.getId()).contains(keyword)){
+                            filteredTools.add(tool);
+                        }
+                    }
+                    theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword);
+                    return "tools/list-tools";
+                case "Part Number":
+                    for (Tool tool: theTools) {
+                        if (String.valueOf(tool.getPartNumber()).contains(keyword)){
+                            filteredTools.add(tool);
+                        }
+                    }
+                    theModel.addAttribute("tools", filteredTools);
+                    return "tools/list-tools";
+                case "Serial Number":
+                    for (Tool tool: theTools) {
+                        if (String.valueOf(tool.getSerialNumber()).contains(keyword)){
+                            filteredTools.add(tool);
+                        }
+                    }
+                    theModel.addAttribute("tools", filteredTools);
+                    return "tools/list-tools";
+                case "Description":
+                    for (Tool tool: theTools) {
+                        if (String.valueOf(tool.getDescription()).contains(keyword)){
+                            filteredTools.add(tool);
+                            System.out.println(filteredTools);
+                        }
+                    }
+                    theModel.addAttribute("tools", filteredTools);
+                    return "tools/list-tools";
+                case "Location":
+                    for (Tool tool: theTools) {
+                        if (String.valueOf(tool.getLocation()).contains(keyword)){
+                            filteredTools.add(tool);
+                            System.out.println(filteredTools);
+                        }
+                    }
+                    theModel.addAttribute("tools", filteredTools);
+                    theModel.addAttribute("keyword", keyword);
+                    return "tools/list-tools";
+                default:
+                    // code block
+            }
+        }
+
         theModel.addAttribute("tools", theTools);
-        theModel.addAttribute("keyword", keyword);
         return "tools/list-tools";
     }
 
@@ -34,7 +88,9 @@ public class ToolController {
     public String showForm(Model theModel){
         //create model attribute to bind form data
         Tool theTool = new Tool();
+
         theModel.addAttribute("tool", theTool);
+
         return "tools/tool-form";
     }
 
@@ -45,7 +101,7 @@ public class ToolController {
         }
         //save tool
         toolService.save(theTool);
-        //use a redirect to prevent dublicate submission
+        //use a redirect to prevent duplicate submission
         return "redirect:/tools/list";
     }
 
