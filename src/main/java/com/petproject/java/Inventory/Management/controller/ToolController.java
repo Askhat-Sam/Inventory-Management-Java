@@ -49,6 +49,7 @@ public class ToolController {
                     }
                     theModel.addAttribute("tools", filteredTools);
                     theModel.addAttribute("keyword", keyword); // to keep  previous input in search input box
+                    theModel.addAttribute("option", option); // to keep  previous input in search input box
                     return "tools/list-tools";
                 case "Serial Number":
                     for (Tool tool: theTools) {

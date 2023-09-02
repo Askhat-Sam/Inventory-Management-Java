@@ -20,10 +20,10 @@
             <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">
                 <option value="All">All</option>
                 <option value="Id" th:selected = "${option=='Id'}">Id</option>
-                <option value="Part Number">Part Number</option>
-                <option value="Serial Number">Serial Number</option>
-                <option value="Description">Description</option>
-                <option value="Location">Location</option>
+                <option value="Part Number" th:selected = "${option=='Part Number'}">Part Number</option>
+                <option value="Serial Number" th:selected = "${option=='Serial Number'}">Serial Number</option>
+                <option value="Description" th:selected = "${option=='Description'}">Description</option>
+                <option value="Location" th:selected = "${option=='Location'}">Location</option>
 
 
             </select>
