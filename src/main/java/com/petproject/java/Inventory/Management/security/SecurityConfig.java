@@ -35,8 +35,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(configurer -> configurer
-                    .anyRequest().authenticated()
+        http.authorizeHttpRequests(configurer ->
+                        configurer
+                                .requestMatchers("/tools/list").hasRole("EMPLOYEE")
+                                .requestMatchers("/tools/showFormForAdd").hasRole("MANAGER")
+//                                .requestMatchers("/tools/list").hasRole("EMPLOYEE")
+                        .anyRequest().authenticated()
                 )
                  .formLogin(form->
                          form

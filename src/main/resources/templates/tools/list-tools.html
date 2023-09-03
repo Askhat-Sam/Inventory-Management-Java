@@ -44,6 +44,8 @@
         </p>
 
 
+
+
         <form action="#" th:action="@{/logout}" method="POST">
             <input type="submit" value="Logout" class="btn btn-outline-success"/>
         </form>
@@ -78,7 +80,7 @@
             <td th:text="${tool.description}"/>
             <td th:text="${tool.location}"/>
             <td>
-                <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm">Edit</a>
+                <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm" sec:authorize="hasRole('ROLE_MANAGER')">Edit</a>
 
                 <a th:href="@{/tools/delete(toolId=${tool.id})}"
                    class="btn btn-danger btn-sm"
