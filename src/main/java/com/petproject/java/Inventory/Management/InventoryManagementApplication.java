@@ -18,15 +18,29 @@ public class InventoryManagementApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
-			createUser(appDAO);
+//			createUser(appDAO);
+			findUser(appDAO);
 		};
 	}
 
+	private void findUser(AppDAO appDAO) {
+		int theId=1;
+		System.out.println("Finding user id: " + theId);
+		User tempUser = appDAO.findUserById(theId);
+		System.out.println("TempUser: " +tempUser);
+		System.out.println("The associated userDetail only: " +tempUser.getUserDetail());
+	}
+
 	private void createUser(AppDAO appDAO) {
+//		//create a user
+//		User tempUser = new User("Ivan", "Ivanov", "I.Ivanov@gmail.com");
+//		//create the user detail
+//		UserDetail tempUserDetail = new UserDetail("Store");
+
 		//create a user
-		User tempUser = new User("Ivan", "Ivanov", "I.Ivanov@gmail.com");
+		User tempUser = new User("Ivan2", "Ivanov2", "I.Ivanov2@gmail.com");
 		//create the user detail
-		UserDetail tempUserDetail = new UserDetail("Store");
+		UserDetail tempUserDetail = new UserDetail("Accountant");
 
 		//associate the objects
 		tempUser.setUserDetail(tempUserDetail);

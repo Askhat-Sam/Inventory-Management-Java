@@ -20,4 +20,9 @@ public class AppDAOImpl implements AppDAO{
     public void save(User user) {
         entityManager.persist(user);
     }
+
+    @Override
+    public User findUserById(int theId) {
+        return entityManager.find(User.class, theId);
+    }
 }
