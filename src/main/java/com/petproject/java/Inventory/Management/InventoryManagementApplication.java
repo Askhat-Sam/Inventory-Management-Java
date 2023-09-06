@@ -19,12 +19,34 @@ public class InventoryManagementApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
 //			createUser(appDAO);
-			findUser(appDAO);
+//			findUser(appDAO);
+//			deleteUser(appDAO);
+			findUserDetail(appDAO);
 		};
 	}
 
-	private void findUser(AppDAO appDAO) {
+	private void findUserDetail(AppDAO appDAO) {
+		int theId = 3;
+
+		//get the user detail object
+		UserDetail tempUserDetail = appDAO.findUserDetailById(theId);
+
+		//print the user detail
+		System.out.println("tempUserDetail: " + tempUserDetail);
+
+		//print the associated instructor
+		System.out.println("the associated user: " + tempUserDetail.getUser());
+	}
+
+	private void deleteUser(AppDAO appDAO) {
 		int theId=1;
+		System.out.println("Deleting user id: " + theId);
+		appDAO.deleteUserById(theId);
+		System.out.println("Done");
+	}
+
+	private void findUser(AppDAO appDAO) {
+		int theId=2;
 		System.out.println("Finding user id: " + theId);
 		User tempUser = appDAO.findUserById(theId);
 		System.out.println("TempUser: " +tempUser);

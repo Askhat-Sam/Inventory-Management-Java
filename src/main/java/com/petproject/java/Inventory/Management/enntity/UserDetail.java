@@ -11,9 +11,12 @@ public class UserDetail {
     private int id;
     @Column(name="department")
     private String department;
+    @OneToOne(mappedBy = "userDetail", cascade = CascadeType.ALL)
+    private User user;
 
     public UserDetail() {
     }
+
 
     public UserDetail(String department) {
         this.department = department;
@@ -34,6 +37,15 @@ public class UserDetail {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     @Override
     public String toString() {
