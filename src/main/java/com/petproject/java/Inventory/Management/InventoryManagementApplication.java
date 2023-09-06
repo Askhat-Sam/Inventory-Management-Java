@@ -21,8 +21,16 @@ public class InventoryManagementApplication {
 //			createUser(appDAO);
 //			findUser(appDAO);
 //			deleteUser(appDAO);
-			findUserDetail(appDAO);
+//			findUserDetail(appDAO);
+			deleteUserDetail(appDAO);
 		};
+	}
+
+	private void deleteUserDetail(AppDAO appDAO) {
+		int theId = 3;
+		System.out.println("Deleting userDetail id: " + theId);
+		appDAO.deleteUserDetailById(theId);
+		System.out.println("Done");
 	}
 
 	private void findUserDetail(AppDAO appDAO) {
