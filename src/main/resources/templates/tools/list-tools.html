@@ -43,9 +43,9 @@
             Role(s): <span sec:authentication="principal.authorities"></span>
         </div>
 
-
-
-
+        <form action="#" th:action="@{/logout}" method="POST">
+            <input type="submit" value="History" class="btn btn-outline-success"/>
+        </form>
 
         <form action="#" th:action="@{/logout}" method="POST">
             <input type="submit" value="Logout" class="btn btn-outline-success"/>
