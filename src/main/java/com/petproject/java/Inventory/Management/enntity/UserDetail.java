@@ -11,7 +11,7 @@ public class UserDetail {
     private int id;
     @Column(name="department")
     private String department;
-    @OneToOne(mappedBy = "userDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "userDetail", cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private User user;
 
     public UserDetail() {

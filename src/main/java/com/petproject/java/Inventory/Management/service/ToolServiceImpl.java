@@ -2,6 +2,7 @@ package com.petproject.java.Inventory.Management.service;
 
 import com.petproject.java.Inventory.Management.dao.ToolRepository;
 import com.petproject.java.Inventory.Management.enntity.Tool;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class ToolServiceImpl implements ToolService{
         }
         return toolRepository.findAll();
     }
+
 
 
     @Override
@@ -52,6 +54,8 @@ public class ToolServiceImpl implements ToolService{
     public List<Tool> findByKeyWord(String keyword) {
         return null;
     }
+
+
 
 
 }

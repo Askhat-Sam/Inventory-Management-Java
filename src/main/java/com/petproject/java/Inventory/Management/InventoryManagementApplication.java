@@ -22,12 +22,12 @@ public class InventoryManagementApplication {
 //			findUser(appDAO);
 //			deleteUser(appDAO);
 //			findUserDetail(appDAO);
-			deleteUserDetail(appDAO);
+//			deleteUserDetail(appDAO);
 		};
 	}
 
 	private void deleteUserDetail(AppDAO appDAO) {
-		int theId = 3;
+		int theId = 4;
 		System.out.println("Deleting userDetail id: " + theId);
 		appDAO.deleteUserDetailById(theId);
 		System.out.println("Done");

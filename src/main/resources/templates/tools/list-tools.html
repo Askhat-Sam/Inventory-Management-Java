@@ -37,11 +37,12 @@
             </a>
         </form>
         <!--display username and role-->
-        <p>
-            User:<span sec:authentication="principal.username"></span>
-            Role(s):<span sec:authentication="principal.authorities"></span>
-            <br><br>
-        </p>
+        <div class="info">
+            User: <span sec:authentication="principal.username"></span>
+            <br>
+            Role(s): <span sec:authentication="principal.authorities"></span>
+        </div>
+
 
 
 

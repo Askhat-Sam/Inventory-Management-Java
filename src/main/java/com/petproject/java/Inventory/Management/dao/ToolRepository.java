@@ -15,12 +15,4 @@ public interface ToolRepository extends JpaRepository<Tool, Integer> {
             "OR s.serial_number LIKE %:keyword% OR s.description like %:keyword% OR s.location like %:keyword%", nativeQuery = true)
     public List<Tool> findAll(@Param("keyword") String keyword);
 
-
-//    @Query(value = "SELECT * from tool s WHERE s.id like %:keyword%", nativeQuery = true)
-//    public List<Tool> findByOption(@Param("option") String option, @Param("keyword") String keyword);
-
-//    @Query(value = "SELECT * FROM tool s WHERE s.(:option) LIKE CONCAT('%', :keyword, '%')", nativeQuery = true)
-// Create a dynamic query using JPA's Criteria API
-
-
 }

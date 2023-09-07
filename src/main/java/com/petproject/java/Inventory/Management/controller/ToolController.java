@@ -5,6 +5,8 @@ import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import jakarta.validation.Valid;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -91,6 +93,12 @@ public class ToolController {
         theModel.addAttribute("tools", theTools);
         theModel.addAttribute("keyword", keyword); // to keep  previously selected option
         theModel.addAttribute("option", option); // to keep  previous input in search input box
+
+        //Print user name
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        System.out.println("current princial name is: " + currentPrincipalName);
+
         return "tools/list-tools";
     }
 
