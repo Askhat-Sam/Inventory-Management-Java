@@ -1,9 +1,11 @@
 package com.petproject.java.Inventory.Management.controller;
 
-import com.petproject.java.Inventory.Management.dao.ToolRepository;
 import com.petproject.java.Inventory.Management.enntity.Tool;
+import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.service.ToolService;
+import com.petproject.java.Inventory.Management.service.TransactionService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +21,17 @@ import java.util.List;
 @RequestMapping("/tools")
 public class ToolController {
     private ToolService toolService;
+    @Autowired
+    private TransactionService transactionService;
 
-    public ToolController(ToolService toolService) {
+//    public ToolController(ToolService toolService) {
+//        this.toolService = toolService;
+//    }
+
+
+    public ToolController(ToolService toolService, TransactionService transactionService) {
         this.toolService = toolService;
+        this.transactionService = transactionService;
     }
 
     @RequestMapping("/list")
@@ -29,6 +39,8 @@ public class ToolController {
         System.out.println("Selected option "+ option);
 
         List<Tool> theTools = toolService.findAll(keyword);
+
+
         List<Tool> filteredTools = new ArrayList<>();
 //        System.out.println(theTools);
         if (option!=null){
@@ -100,6 +112,14 @@ public class ToolController {
         System.out.println("current princial name is: " + currentPrincipalName);
 
         return "tools/list-tools";
+    }
+
+    @RequestMapping("/transactions")
+    public String transactionHistory(Model theModel){
+        List<Transaction> theTransactions = transactionService.findAll();
+        System.out.println("Transactions from SQL " + theTransactions);
+        theModel.addAttribute("transactions", theTransactions);
+        return "tools/transactions-history";
     }
 
     @GetMapping("/showFormForAdd")

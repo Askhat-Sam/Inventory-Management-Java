@@ -1,7 +1,6 @@
 package com.petproject.java.Inventory.Management.service;
 
 import com.petproject.java.Inventory.Management.enntity.Tool;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,6 +15,4 @@ public interface ToolService {
 
     //get tool by keyword
     public List<Tool> findByKeyWord(String keyword);
-
-
 }

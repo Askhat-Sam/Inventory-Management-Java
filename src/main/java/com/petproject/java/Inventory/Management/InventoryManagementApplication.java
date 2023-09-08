@@ -15,16 +15,16 @@ public class InventoryManagementApplication {
 		SpringApplication.run(InventoryManagementApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(AppDAO appDAO){
-		return runner -> {
-//			createUser(appDAO);
-//			findUser(appDAO);
-//			deleteUser(appDAO);
-//			findUserDetail(appDAO);
-//			deleteUserDetail(appDAO);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(AppDAO appDAO){
+//		return runner -> {
+////			createUser(appDAO);
+////			findUser(appDAO);
+////			deleteUser(appDAO);
+////			findUserDetail(appDAO);
+////			deleteUserDetail(appDAO);
+//		};
+//	}
 
 	private void deleteUserDetail(AppDAO appDAO) {
 		int theId = 4;

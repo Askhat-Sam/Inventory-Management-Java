@@ -1,10 +1,9 @@
 package com.petproject.java.Inventory.Management.enntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="transaction")
 public class Transaction {
     @Id
     @Column(name="id")
