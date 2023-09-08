@@ -182,9 +182,10 @@ public class ToolController {
                 );
             }
         }
-
+        //update DB if there were changes in tools list
         if (transactionList.size()>0){
-            transactionList.forEach(System.out::println);
+            transactionList.forEach(s->transactionService.save(s));
+            System.out.println("Transaction database was updated");
         }
 
 
