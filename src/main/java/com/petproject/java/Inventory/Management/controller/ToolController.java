@@ -209,6 +209,14 @@ public class ToolController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("toolId") int theId){
+        Tool deletedTool = toolService.findById(theId);
+        Transaction deleteTransaction = new Transaction(
+                new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                        SecurityContextHolder.getContext().getAuthentication().getName(),
+                        deletedTool.getId(),
+                        "Tool with id '" + theId + "' was removed."
+        );
+        transactionService.save(deleteTransaction);
         toolService.deleteById(theId);
         return "redirect:/tools/list";
     }

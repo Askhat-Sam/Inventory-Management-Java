@@ -17,13 +17,13 @@
         <form th:action="@{/tools/transactions}" class="d-flex" role="search" modelAttribute="selectedOption">
             <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
-            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">
-                <option value="All">All</option>
-                <option value="Id" th:selected = "${option=='Id'}">Id</option>
-                <option value="User" th:selected = "${option=='User'}">User</option>
-                <option value="Tool id" th:selected = "${option=='Tool id'}">Tool id</option>
-                <option value="Transaction type" th:selected = "${option=='Transaction type'}">Transaction type</option>
-            </select>
+<!--            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">-->
+<!--                <option value="All">All</option>-->
+<!--                <option value="Id" th:selected = "${option=='Id'}">Id</option>-->
+<!--                <option value="User" th:selected = "${option=='User'}">User</option>-->
+<!--                <option value="Tool id" th:selected = "${option=='Tool id'}">Tool id</option>-->
+<!--                <option value="Transaction type" th:selected = "${option=='Transaction type'}">Transaction type</option>-->
+<!--            </select>-->
 
             <button class="btn btn-outline-success" type="submit">Search</button>
             &nbsp;
@@ -31,11 +31,11 @@
             &nbsp;
         </form>
         <!--display username and role-->
-        <div class="info">
-            User: <span sec:authentication="principal.username"></span>
-            <br>
-            Role(s): <span sec:authentication="principal.authorities"></span>
-        </div>
+<!--        <div class="info">-->
+<!--            User: <span sec:authentication="principal.username"></span>-->
+<!--            <br>-->
+<!--            Role(s): <span sec:authentication="principal.authorities"></span>-->
+<!--        </div>-->
 
 
 
