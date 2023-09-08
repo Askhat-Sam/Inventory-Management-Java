@@ -15,7 +15,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findAll() {
+    public List<Transaction> findAll(String keyword) {
+
+        if (keyword !=null){
+            return transactionRepository.findAll(keyword);
+        }
         return transactionRepository.findAll();
     }
 

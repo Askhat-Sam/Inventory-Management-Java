@@ -108,17 +108,12 @@ public class ToolController {
         theModel.addAttribute("keyword", keyword); // to keep  previously selected option
         theModel.addAttribute("option", option); // to keep  previous input in search input box
 
-        //Print user name
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-//        System.out.println("current princial name is: " + currentPrincipalName);
-
         return "tools/list-tools";
     }
 
     @RequestMapping("/transactions")
-    public String transactionHistory(Model theModel){
-        List<Transaction> theTransactions = transactionService.findAll();
+    public String transactionHistory(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
+        List<Transaction> theTransactions = transactionService.findAll(keyword);
         System.out.println("Transactions from SQL " + theTransactions);
         theModel.addAttribute("transactions", theTransactions);
         return "tools/transactions-history";
@@ -150,7 +145,7 @@ public class ToolController {
                         new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                                 SecurityContextHolder.getContext().getAuthentication().getName(),
                                 theTool.getId(),
-                                updatedTool.getPartNumber().equals(theTool.getPartNumber()) ? "" : "Description was changed from: '" + updatedTool.getPartNumber() + "' to '" + theTool.getPartNumber()
+                                updatedTool.getPartNumber().equals(theTool.getPartNumber()) ? "" : "Part number was changed from: '" + updatedTool.getPartNumber() + "' to '" + theTool.getPartNumber() + "'"
                                 )
                 );
             }
@@ -159,7 +154,7 @@ public class ToolController {
                         new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                                 SecurityContextHolder.getContext().getAuthentication().getName(),
                                 theTool.getId(),
-                                updatedTool.getSerialNumber().equals(theTool.getSerialNumber()) ? "" : "Description was changed from: '" + updatedTool.getSerialNumber() + "' to '" + theTool.getSerialNumber()
+                                updatedTool.getSerialNumber().equals(theTool.getSerialNumber()) ? "" : "Serial number was changed from: '" + updatedTool.getSerialNumber() + "' to '" + theTool.getSerialNumber() + "'"
                         )
                 );
             }
@@ -168,7 +163,7 @@ public class ToolController {
                         new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                                 SecurityContextHolder.getContext().getAuthentication().getName(),
                                 theTool.getId(),
-                                updatedTool.getDescription().equals(theTool.getDescription()) ? "" : "Description was changed from: '" + updatedTool.getDescription() + "' to '" + theTool.getDescription()
+                                updatedTool.getDescription().equals(theTool.getDescription()) ? "" : "Description was changed from: " + updatedTool.getDescription() + "' to '" + theTool.getDescription() + "'"
                         )
                 );
             }
@@ -177,7 +172,7 @@ public class ToolController {
                         new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                                 SecurityContextHolder.getContext().getAuthentication().getName(),
                                 theTool.getId(),
-                                updatedTool.getLocation().equals(theTool.getLocation()) ? "" : "Description was changed from: '" + updatedTool.getLocation() + "' to '" + theTool.getLocation()
+                                updatedTool.getLocation().equals(theTool.getLocation()) ? "" : "Location was changed from: '" + updatedTool.getLocation() + "' to '" + theTool.getLocation() + "'"
                         )
                 );
             }

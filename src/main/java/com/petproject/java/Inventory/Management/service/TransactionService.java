@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface TransactionService {
-    List<Transaction> findAll();
+    List<Transaction> findAll(String keyword);
     void save(Transaction theTransaction);
 }
 //
