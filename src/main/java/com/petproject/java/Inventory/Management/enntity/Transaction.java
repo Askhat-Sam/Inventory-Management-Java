@@ -2,6 +2,8 @@ package com.petproject.java.Inventory.Management.enntity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name="transaction")
 public class Transaction {
@@ -14,14 +16,14 @@ public class Transaction {
     @Column(name="user")
     private String user;
     @Column(name="tool_id")
-    private String toolId;
+    private int toolId;
     @Column(name="transaction_type")
     private String transactionType;
 
     public Transaction() {
     }
 
-    public Transaction(String date, String user, String toolId, String transactionType) {
+    public Transaction(String date, String user, int toolId, String transactionType) {
         this.date = date;
         this.user = user;
         this.toolId = toolId;
@@ -52,11 +54,11 @@ public class Transaction {
         this.user = user;
     }
 
-    public String getToolId() {
+    public int getToolId() {
         return toolId;
     }
 
-    public void setToolId(String toolId) {
+    public void setToolId(int toolId) {
         this.toolId = toolId;
     }
 

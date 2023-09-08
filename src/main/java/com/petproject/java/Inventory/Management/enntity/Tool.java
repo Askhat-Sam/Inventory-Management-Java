@@ -84,6 +84,7 @@ public class Tool {
                 ", partNumber='" + partNumber + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

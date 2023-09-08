@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -107,9 +109,9 @@ public class ToolController {
         theModel.addAttribute("option", option); // to keep  previous input in search input box
 
         //Print user name
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        System.out.println("current princial name is: " + currentPrincipalName);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+//        System.out.println("current princial name is: " + currentPrincipalName);
 
         return "tools/list-tools";
     }
@@ -137,8 +139,62 @@ public class ToolController {
         if (theBindingResult.hasErrors()){
             return "tools/tool-form";
         }
+
+        Tool updatedTool = toolService.findById(theTool.getId());
+        //create transaction object
+        List<Transaction> transactionList = new ArrayList<>();
+        Transaction transaction = new Transaction();
+        if (!updatedTool.equals(theTool)){
+            if (!updatedTool.getPartNumber().equals(theTool.getPartNumber())){
+                transactionList.add(
+                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                                SecurityContextHolder.getContext().getAuthentication().getName(),
+                                theTool.getId(),
+                                updatedTool.getPartNumber().equals(theTool.getPartNumber()) ? "" : "Description was changed from: '" + updatedTool.getPartNumber() + "' to '" + theTool.getPartNumber()
+                                )
+                );
+            }
+            if (!updatedTool.getSerialNumber().equals(theTool.getSerialNumber())){
+                transactionList.add(
+                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                                SecurityContextHolder.getContext().getAuthentication().getName(),
+                                theTool.getId(),
+                                updatedTool.getSerialNumber().equals(theTool.getSerialNumber()) ? "" : "Description was changed from: '" + updatedTool.getSerialNumber() + "' to '" + theTool.getSerialNumber()
+                        )
+                );
+            }
+            if (!updatedTool.getDescription().equals(theTool.getDescription())){
+                transactionList.add(
+                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                                SecurityContextHolder.getContext().getAuthentication().getName(),
+                                theTool.getId(),
+                                updatedTool.getDescription().equals(theTool.getDescription()) ? "" : "Description was changed from: '" + updatedTool.getDescription() + "' to '" + theTool.getDescription()
+                        )
+                );
+            }
+            if (!updatedTool.getLocation().equals(theTool.getLocation())){
+                transactionList.add(
+                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                                SecurityContextHolder.getContext().getAuthentication().getName(),
+                                theTool.getId(),
+                                updatedTool.getLocation().equals(theTool.getLocation()) ? "" : "Description was changed from: '" + updatedTool.getLocation() + "' to '" + theTool.getLocation()
+                        )
+                );
+            }
+        }
+
+        if (transactionList.size()>0){
+            transactionList.forEach(System.out::println);
+        }
+
+
+        //save the difference to DB as object of class transaction
+
+
+
         //save tool
         toolService.save(theTool);
+
         //use a redirect to prevent duplicate submission
         return "redirect:/tools/list";
     }
