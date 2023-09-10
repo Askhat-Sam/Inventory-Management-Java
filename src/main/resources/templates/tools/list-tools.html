@@ -31,10 +31,13 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
             &nbsp;
             <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
-            &nbsp;
-            <a th:href="@{/tools/showFormForAdd}" class="btn btn-primary btn-sm col-3">
+
+            <button class="btn btn-primary btn-sm col-3 me-2">
+                <a th:href="@{/tools/showFormForAdd}" style="color: white">
                 Add tool
-            </a>
+                </a>
+            </button>
+
         </form>
         <!--display username and role-->
         <div class="info">
@@ -57,6 +60,40 @@
 
 </div>
 <br>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add tool
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new tool</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" th:action="@{/tools/addNew}" method="POST">
+<!--                    <input type="hidden" th:field="*{id}">-->
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location">
+
+                    <button type="submit" class="btn btn-info col-5">Save</button>
+                </form>
+            </div>
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                <button type="submit" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+
 
 
 <div class="container-fluid">
@@ -104,5 +141,9 @@
         window.location = '/tools/list';
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+
 </body>
 </html>

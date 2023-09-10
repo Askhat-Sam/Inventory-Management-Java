@@ -221,4 +221,16 @@ public class ToolController {
         return "redirect:/tools/list";
     }
 
+    @PostMapping("/addNew")
+    public String addTool(@RequestParam("partNumber") String partNumber, @RequestParam("serialNumber") String serialNumber,
+                          @RequestParam("description") String description, @RequestParam("location") String location){
+        //create new tool object
+        Tool newTool = new Tool(partNumber, serialNumber, description, location);
+        //save the new tool
+        toolService.save(newTool);
+
+        //use a redirect to prevent duplicate submission
+        return "redirect:/tools/list";
+    }
+
 }
