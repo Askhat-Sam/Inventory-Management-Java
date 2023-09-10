@@ -17,7 +17,7 @@
         <form th:action="@{/tools/list}" class="d-flex" role="search" modelAttribute="selectedOption">
             <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
-            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">
+            <select th:value="*{option}" name="option" class="form-select me-1" aria-label="Default select example">
                 <option value="All">All</option>
                 <option value="Id" th:selected = "${option=='Id'}">Id</option>
                 <option value="Part Number" th:selected = "${option=='Part Number'}">Part Number</option>
@@ -28,14 +28,19 @@
 
             </select>
 
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success mx-1" type="submit">Search</button>
             &nbsp;
-            <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
+            <button class="btn btn-outline-success me-1" type="button" onclick="clearFilter()">Clear</button>
 
-            <button class="btn btn-primary btn-sm col-3 me-2">
-                <a th:href="@{/tools/showFormForAdd}" style="color: white">
+<!--            <button class="btn btn-primary btn-sm col-3 me-2">-->
+<!--                <a th:href="@{/tools/showFormForAdd}" style="color: white">-->
+<!--                Add tool-->
+<!--                </a>-->
+<!--            </button>-->
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add tool
-                </a>
             </button>
 
         </form>
@@ -62,10 +67,7 @@
 <br>
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Add tool
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
