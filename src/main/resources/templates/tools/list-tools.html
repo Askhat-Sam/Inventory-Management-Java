@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" src="../static/js/code.jquery.com_jquery-3.7.1.min.js" th:src="@{/js/code.jquery.com_jquery-3.7.1.min.js}"></script>
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+
     <title>Inventory</title>
 </head>
 <body>
@@ -24,8 +27,6 @@
                 <option value="Serial Number" th:selected = "${option=='Serial Number'}">Serial Number</option>
                 <option value="Description" th:selected = "${option=='Description'}">Description</option>
                 <option value="Location" th:selected = "${option=='Location'}">Location</option>
-
-
             </select>
 
             <button class="btn btn-outline-success mx-1" type="submit">Search</button>
@@ -39,7 +40,7 @@
 <!--            </button>-->
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#addModal">
                 Add tool
             </button>
 
@@ -66,15 +67,12 @@
 </div>
 <br>
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal form for add tool-->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new tool</h1>
+                <h1 class="modal-title fs-5" id="addModalLabel">Add new tool</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -88,12 +86,33 @@
                     <button type="submit" class="btn btn-info col-5">Save</button>
                 </form>
             </div>
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                <button type="submit" class="btn btn-primary">Save changes</button>-->
-<!--            </div>-->
         </div>
     </div>
+</div>
+
+<!-- Modal form for edit tool-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <form action="#" th:action="@{/tools/update}" method="PUT">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">Edit tool</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber" id="partNumberEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber" id="serialNumberEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description" id="descriptionEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location" id="locationEdit">
+
+                    <button type="submit" class="btn btn-info col-5">Save</button>
+
+            </div>
+        </div>
+    </div>
+    </form>
 </div>
 
 
@@ -120,7 +139,10 @@
             <td th:text="${tool.description}"/>
             <td th:text="${tool.location}"/>
             <td>
-                <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">Edit</a>
+<!--                <a th:href="@{/tools/showFormForUpdate(toolId=${tool.id})}" class="btn btn-info btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">Edit</a>-->
+                <a th:href="@{/tools/getOne(theId=${tool.id})}" class="btn-edit btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                    Edit
+                </a>
 
                 <a th:href="@{/tools/delete(toolId=${tool.id})}"
                    class="btn btn-danger btn-sm"
@@ -138,10 +160,20 @@
 </div>
 
 </div>
+
+
+
 <script type="text/javascript">
     function clearFilter(){
         window.location = '/tools/list';
     }
+
+<!--    function showModal(){-->
+<!--        let modalOne = document.getElementById("editModal");-->
+<!--        console.log(modalOne);-->
+<!--           modalOne.setAttribute('aria-hidden', 'false');-->
+
+<!--    }-->
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -55,5 +55,22 @@ public class ToolServiceImpl implements ToolService{
         return null;
     }
 
+    @Override
+    public void update(Tool theTool) {
+        toolRepository.save(theTool);
+    }
 
+    @Override
+    public Tool getOne(int theId) {
+        Optional<Tool> result = toolRepository.findById(theId);
+
+        Tool theTool = null;
+
+        if (result.isPresent()){
+            theTool = result.get();
+        } else {
+            throw new RuntimeException("Did not find tool id "+ theId);
+        }
+        return theTool;
+    }
 }

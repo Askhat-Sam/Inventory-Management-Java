@@ -38,7 +38,6 @@ public class ToolController {
 
     @RequestMapping("/list")
     public String listTools(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
-        System.out.println("Selected option "+ option);
 
         List<Tool> theTools = toolService.findAll(keyword);
 
@@ -195,17 +194,17 @@ public class ToolController {
         return "redirect:/tools/list";
     }
 
-    @GetMapping("/showFormForUpdate")
-    public String showFormForUpdate(@RequestParam("toolId") int theId, Model theModel){
-
-        //get tool from database
-        Tool theTool = toolService.findById(theId);
-        //set tool as a model attribute to the pre-populate form
-        theModel.addAttribute("tool", theTool);
-
-        //send over to form
-        return "tools/tool-form";
-    }
+//    @GetMapping("/showFormForUpdate")
+//    public String showFormForUpdate(@RequestParam("toolId") int theId, Model theModel){
+//
+//        //get tool from database
+//        Tool theTool = toolService.findById(theId);
+//        //set tool as a model attribute to the pre-populate form
+//        theModel.addAttribute("tool", theTool);
+//
+//        //send over to form
+//        return "tools/tool-form";
+//    }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("toolId") int theId){
@@ -231,6 +230,17 @@ public class ToolController {
 
         //use a redirect to prevent duplicate submission
         return "redirect:/tools/list";
+    }
+
+    @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String update(Tool theTool){
+        toolService.save(theTool);
+        return "redirect:/tools/list";
+    }
+    @RequestMapping("/getOne")
+    @ResponseBody
+    public Tool findById(Integer theId){
+        return toolService.findById(theId);
     }
 
 }
