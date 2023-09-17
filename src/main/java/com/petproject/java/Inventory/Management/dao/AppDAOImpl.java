@@ -1,10 +1,15 @@
 package com.petproject.java.Inventory.Management.dao;
 
+import com.petproject.java.Inventory.Management.enntity.Role;
 import com.petproject.java.Inventory.Management.enntity.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Repository
 public class AppDAOImpl implements AppDAO{
 
@@ -33,6 +38,16 @@ public class AppDAOImpl implements AppDAO{
         User tempUser=entityManager.find(User.class, userId);
         //Delete user
         entityManager.remove(tempUser);
+    }
+
+    @Override
+    public List<Role> findRolesByUserId(String userId) {
+        //create query
+        TypedQuery<Role> query = entityManager.createQuery(
+                "from Roles where user.id=:data", Role.class);
+        query.setParameter("data", userId);
+
+        return query.getResultList();
     }
 
 //    @Override
