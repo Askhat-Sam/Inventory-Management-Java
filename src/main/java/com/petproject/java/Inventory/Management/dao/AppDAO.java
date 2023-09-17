@@ -8,6 +8,8 @@ public interface AppDAO {
 
     void deleteByUserId(String userId);
 
+
+
 //    void deleteUserDetailById(int theId); TOOOOOOOOOOOOOOOOOOOO BE FIXED
 
 
