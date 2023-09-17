@@ -19,7 +19,7 @@ public class InventoryManagementApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
 //			createUserWithRoles(appDAO);
-			findUser(appDAO);
+//			findUser(appDAO);
 //			deleteUser(appDAO);
 //			findUserDetail(appDAO);
 //			findUserWithRoles(appDAO);

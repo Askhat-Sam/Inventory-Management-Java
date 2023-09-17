@@ -17,35 +17,13 @@ public class SecurityConfig {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         // define query to retrieve a user by username
         jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "select user_id, pw, active from members where user_id=?");
+                "select user_id, password, active from user where user_id=?");
 
         //define query to retrieve a authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "select user_id, role from roles where user_id=?");
+                "select user_id, user_roles from roles where user_id=?");
         return jdbcUserDetailsManager;
     }
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager(){
-//        UserDetails john = User.builder()
-//                .username("john")
-//                .password("{noop}test123")
-//                .roles("EMPLOYEE")
-//                .build();
-//
-//        UserDetails marry = User.builder()
-//                .username("marry")
-//                .password("{noop}test123")
-//                .roles("EMPLOYEE", "MANAGER")
-//                .build();
-//
-//        UserDetails susan = User.builder()
-//                .username("susan")
-//                .password("{noop}test123")
-//                .roles("EMPLOYEE", "MANAGER", "ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(john, marry, susan);
-//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
