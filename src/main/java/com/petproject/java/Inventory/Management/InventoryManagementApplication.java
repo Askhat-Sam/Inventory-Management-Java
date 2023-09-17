@@ -1,8 +1,8 @@
 package com.petproject.java.Inventory.Management;
 
 import com.petproject.java.Inventory.Management.dao.AppDAO;
+import com.petproject.java.Inventory.Management.enntity.Role;
 import com.petproject.java.Inventory.Management.enntity.User;
-import com.petproject.java.Inventory.Management.enntity.UserDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,72 +15,62 @@ public class InventoryManagementApplication {
 		SpringApplication.run(InventoryManagementApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner(AppDAO appDAO){
-//		return runner -> {
-////			createUser(appDAO);
-////			findUser(appDAO);
-////			deleteUser(appDAO);
-////			findUserDetail(appDAO);
-////			deleteUserDetail(appDAO);
-//		};
-//	}
+	@Bean
+	public CommandLineRunner commandLineRunner(AppDAO appDAO){
+		return runner -> {
+//			createUserWithRoles(appDAO);
+			findUser(appDAO);
+//			deleteUser(appDAO);
+//			findUserDetail(appDAO);
+//			findUserWithRoles(appDAO);
+		};
+	}
 
-	private void deleteUserDetail(AppDAO appDAO) {
-		int theId = 4;
-		System.out.println("Deleting userDetail id: " + theId);
-		appDAO.deleteUserDetailById(theId);
+	private void findUserWithRoles(AppDAO appDAO) {
+		String userId = "john.s";
+		System.out.println("Finding userId: " + userId);
+		User tempUser = appDAO.findUserByUserId(userId);
+		System.out.println("TempUser: " + tempUser);
+		System.out.println("the associated roles: " + tempUser.getRoles());
 		System.out.println("Done");
 	}
 
-	private void findUserDetail(AppDAO appDAO) {
-		int theId = 3;
+	private void createUserWithRoles(AppDAO appDAO) {
+		//create a user
+		User tempUser = new User("suvb.S", "ivan", "smith","I.Ivanov2@gmail.com", "$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q", 1);
 
-		//get the user detail object
-		UserDetail tempUserDetail = appDAO.findUserDetailById(theId);
+		//creates some roles
+		Role tempRoles1 = new Role("ROLE_EMPLOYEE");
+		Role tempRoles2 = new Role("ROLE_MANAGER");
 
-		//print the user detail
-		System.out.println("tempUserDetail: " + tempUserDetail);
+		tempUser.add(tempRoles1);
+		tempUser.add(tempRoles2);
 
-		//print the associated instructor
-		System.out.println("the associated user: " + tempUserDetail.getUser());
+		//saving user into DB
+		System.out.println("Saving user: " + tempUser);
+		System.out.println("The roles: " + tempUser.getRoles());
+		appDAO.save(tempUser);
+
+		System.out.println("Done");
 	}
 
 	private void deleteUser(AppDAO appDAO) {
-		int theId=1;
-		System.out.println("Deleting user id: " + theId);
-		appDAO.deleteUserById(theId);
+		String userId = "john.s";
+		System.out.println("Deleting user id: " + userId);
+		appDAO.deleteByUserId(userId);
 		System.out.println("Done");
 	}
 
 	private void findUser(AppDAO appDAO) {
-		int theId=2;
-		System.out.println("Finding user id: " + theId);
-		User tempUser = appDAO.findUserById(theId);
+		String userId = "susan.s";
+		System.out.println("Finding userId: " + userId);
+		User tempUser = appDAO.findUserByUserId(userId);
+
+//		tempUser.setRoles(List.of(new Roles("ROLE_EMPLOYEE")));
 		System.out.println("TempUser: " +tempUser);
-		System.out.println("The associated userDetail only: " +tempUser.getUserDetail());
+		System.out.println("The associated roles only: " +tempUser.getRoles()); //doest work
+
+
 	}
-
-	private void createUser(AppDAO appDAO) {
-//		//create a user
-//		User tempUser = new User("Ivan", "Ivanov", "I.Ivanov@gmail.com");
-//		//create the user detail
-//		UserDetail tempUserDetail = new UserDetail("Store");
-
-		//create a user
-		User tempUser = new User("Ivan2", "Ivanov2", "I.Ivanov2@gmail.com");
-		//create the user detail
-		UserDetail tempUserDetail = new UserDetail("Accountant");
-
-		//associate the objects
-		tempUser.setUserDetail(tempUserDetail);
-
-		//save the user
-		System.out.println("Saving user: " + tempUser);
-		appDAO.save(tempUser);
-
-		System.out.println("Done!");
-	}
-
 
 }

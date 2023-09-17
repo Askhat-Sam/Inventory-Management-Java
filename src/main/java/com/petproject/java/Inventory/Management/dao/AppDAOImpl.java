@@ -1,7 +1,6 @@
 package com.petproject.java.Inventory.Management.dao;
 
 import com.petproject.java.Inventory.Management.enntity.User;
-import com.petproject.java.Inventory.Management.enntity.UserDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,32 +22,27 @@ public class AppDAOImpl implements AppDAO{
     }
 
     @Override
-    public User findUserById(int theId) {
-        return entityManager.find(User.class, theId);
+    public User findUserByUserId(String userId) {
+        return entityManager.find(User.class, userId);
     }
-
+//
     @Override
     @Transactional
-    public void deleteUserById(int theId) {
+    public void deleteByUserId(String userId) {
         //Get user
-        User tempUser=entityManager.find(User.class, theId);
+        User tempUser=entityManager.find(User.class, userId);
         //Delete user
         entityManager.remove(tempUser);
     }
 
-    @Override
-    public UserDetail findUserDetailById(int theId) {
-        return entityManager.find(UserDetail.class, theId);
-    }
-
-    @Override
-    @Transactional
-    public void deleteUserDetailById(int theId) {
-        UserDetail tempUserDetail = entityManager.find(UserDetail.class, theId);
-        //remove associated object reference
-        //break bi-directional link
-        tempUserDetail.getUser().setUserDetail(null);
-
-        entityManager.remove(tempUserDetail);
-    }
+//    @Override
+//    @Transactional
+//    public void deleteUserDetailById(int theId) {
+//        UserDetail tempUserDetail = entityManager.find(UserDetail.class, theId);
+//        //remove associated object reference
+//        //break bi-directional link
+//        tempUserDetail.getUser().setUserDetail(null);
+//
+//        entityManager.remove(tempUserDetail);
+//    }
 }

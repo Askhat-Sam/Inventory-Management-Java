@@ -2,46 +2,50 @@ package com.petproject.java.Inventory.Management.enntity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
+    @Column(name="user_id")
+    private String userId;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
     private String lastName;
     @Column(name="email")
     private String email;
-    //set up mapping to UserDetail entity
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="user_detail_id")
-    private UserDetail userDetail;
+    @Column(name="password")
+    private String password;
+    @Column(name="active")
+    private int active;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Role> roles;
+
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, UserDetail userDetail) {
+
+
+    public User(String userId, String firstName, String lastName, String email, String password, int active) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userDetail = userDetail;
+        this.password = password;
+        this.active = active;
+
     }
 
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public String getUserId() {
+        return userId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -68,22 +72,48 @@ public class User {
         this.email = email;
     }
 
-    public UserDetail getUserDetail() {
-        return userDetail;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserDetail(UserDetail userDetail) {
-        this.userDetail = userDetail;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId='" + userId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", userDetail=" + userDetail +
+                ", password='" + password + '\'' +
+                ", active=" + active +
                 '}';
+    }
+
+//     add convenience methods for bi-directional relationship
+    public void add(Role tempRoles){
+        if(roles==null){
+            roles = new ArrayList<>();
+        }
+        roles.add(tempRoles);
+        tempRoles.setUser(this);
     }
 }
