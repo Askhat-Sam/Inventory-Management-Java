@@ -13,6 +13,8 @@ public interface AppDAO {
 
     List<Role> findRolesByUserId(String userId);
 
+    User findUserByUserIdJoinFetch(String userId);
+
 //    void deleteUserDetailById(int theId); TOOOOOOOOOOOOOOOOOOOO BE FIXED
 
 

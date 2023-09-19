@@ -53,6 +53,15 @@ public class AppDAOImpl implements AppDAO{
         return roles;
     }
 
+    @Override
+    public User findUserByUserIdJoinFetch(String userId) {
+        TypedQuery<User> query = entityManager.createQuery(
+                "SELECT i from User i JOIN FETCH" +
+                        " i.roles WHERE i.userId = : data", User.class);
+        query.setParameter("data", userId);
+        return query.getSingleResult();
+    }
+
 //    @Override
 //    @Transactional
 //    public void deleteUserDetailById(int theId) {
