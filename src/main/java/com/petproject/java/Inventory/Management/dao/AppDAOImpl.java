@@ -44,10 +44,13 @@ public class AppDAOImpl implements AppDAO{
     public List<Role> findRolesByUserId(String userId) {
         //create query
         TypedQuery<Role> query = entityManager.createQuery(
-                "from Roles where user.id=:data", Role.class);
+                "SELECT r FROM Role r WHERE r.user.userId = :data", Role.class);
+
         query.setParameter("data", userId);
 
-        return query.getResultList();
+        List<Role> roles = query.getResultList();
+
+        return roles;
     }
 
 //    @Override

@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class InventoryManagementApplication {
 
@@ -23,7 +25,22 @@ public class InventoryManagementApplication {
 //			deleteUser(appDAO);
 //			findUserDetail(appDAO);
 //			findUserWithRoles(appDAO);
+			findRolesForUser(appDAO);
 		};
+	}
+
+	private void findRolesForUser(AppDAO appDAO) {
+		String userId = "susan.s";
+		System.out.println("Finding userId: " + userId);
+		User tempUser = appDAO.findUserByUserId(userId);
+		System.out.println("TempUser: " + tempUser);
+
+		//find roles for user
+		System.out.println("Finding roles for user id: " + userId);
+//		List<Role> roles = appDAO.findRolesByUserId(userId);
+		System.out.println(appDAO.findRolesByUserId(userId));
+//		tempUser.setRoles(roles);
+//		System.out.println("associated roles "+  tempUser.getRoles());
 	}
 
 	private void findUserWithRoles(AppDAO appDAO) {
@@ -66,7 +83,7 @@ public class InventoryManagementApplication {
 		System.out.println("Finding userId: " + userId);
 		User tempUser = appDAO.findUserByUserId(userId);
 
-//		tempUser.setRoles(List.of(new Roles("ROLE_EMPLOYEE")));
+
 		System.out.println("TempUser: " +tempUser);
 		System.out.println("The associated roles only: " +tempUser.getRoles()); //doest work
 
