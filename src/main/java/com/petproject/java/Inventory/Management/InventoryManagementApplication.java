@@ -26,8 +26,23 @@ public class InventoryManagementApplication {
 //			findUserDetail(appDAO);
 //			findUserWithRoles(appDAO);
 //			findRolesForUser(appDAO);
-			findUserWithRolesJoinFetch(appDAO);
+//			findUserWithRolesJoinFetch(appDAO);
+			updateUser(appDAO);
 		};
+	}
+
+	private void updateUser(AppDAO appDAO) {
+		String userId = "susan.s";
+		//find user
+		System.out.println("Finding userId: " + userId);
+		User tempUser = appDAO.findUserByUserIdJoinFetch(userId);
+		System.out.println("TempUser: " + tempUser);
+		//update some data for the user
+		System.out.println("Updating user id: " + userId);
+		tempUser.setLastName("Test Name");
+		appDAO.update(tempUser);
+		System.out.println("Done!");
+
 	}
 
 	private void findUserWithRolesJoinFetch(AppDAO appDAO) {

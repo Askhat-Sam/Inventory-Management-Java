@@ -62,6 +62,12 @@ public class AppDAOImpl implements AppDAO{
         return query.getSingleResult();
     }
 
+    @Override
+    @Transactional
+    public void update(User tempUser) {
+        entityManager.merge(tempUser);
+    }
+
 //    @Override
 //    @Transactional
 //    public void deleteUserDetailById(int theId) {

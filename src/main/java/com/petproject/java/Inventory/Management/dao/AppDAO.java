@@ -15,6 +15,8 @@ public interface AppDAO {
 
     User findUserByUserIdJoinFetch(String userId);
 
+    void update(User tempUser);
+
 //    void deleteUserDetailById(int theId); TOOOOOOOOOOOOOOOOOOOO BE FIXED
 
 
