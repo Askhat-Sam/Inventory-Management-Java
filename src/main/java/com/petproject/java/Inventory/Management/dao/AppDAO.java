@@ -17,6 +17,10 @@ public interface AppDAO {
 
     void update(User tempUser);
 
+    void update(Role tempRole);
+
+    Role findRoleByUserId(int id);
+
 //    void deleteUserDetailById(int theId); TOOOOOOOOOOOOOOOOOOOO BE FIXED
 
 

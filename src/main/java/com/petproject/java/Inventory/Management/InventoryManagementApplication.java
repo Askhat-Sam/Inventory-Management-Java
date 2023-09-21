@@ -27,8 +27,21 @@ public class InventoryManagementApplication {
 //			findUserWithRoles(appDAO);
 //			findRolesForUser(appDAO);
 //			findUserWithRolesJoinFetch(appDAO);
-			updateUser(appDAO);
+//			updateUser(appDAO);
+			updateRole(appDAO);
 		};
+	}
+
+	private void updateRole(AppDAO appDAO) {
+		int userId = 2;
+		//find the role
+
+		System.out.println("Finding role for : " + userId);
+		Role tempRole = appDAO.findRoleByUserId(userId);
+		System.out.println("Updating role for user: " + tempRole);
+		tempRole.setUserRoles("New role");
+
+		appDAO.update(tempRole);
 	}
 
 	private void updateUser(AppDAO appDAO) {

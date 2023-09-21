@@ -68,6 +68,22 @@ public class AppDAOImpl implements AppDAO{
         entityManager.merge(tempUser);
     }
 
+    @Override
+    @Transactional
+    public void update(Role tempRole) {
+        entityManager.merge(tempRole);
+    }
+
+    @Override
+    public Role findRoleByUserId(int id) {
+        return entityManager.find(Role.class, id);
+
+    }
+
+//    public User findUserByUserId(String userId) {
+//        return entityManager.find(User.class, userId);
+//    }
+
 //    @Override
 //    @Transactional
 //    public void deleteUserDetailById(int theId) {
