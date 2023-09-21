@@ -22,13 +22,13 @@ public class InventoryManagementApplication {
 		return runner -> {
 //			createUserWithRoles(appDAO);
 //			findUser(appDAO);
-//			deleteUser(appDAO);
+			deleteUser(appDAO);
 //			findUserDetail(appDAO);
 //			findUserWithRoles(appDAO);
 //			findRolesForUser(appDAO);
 //			findUserWithRolesJoinFetch(appDAO);
 //			updateUser(appDAO);
-			updateRole(appDAO);
+//			updateRole(appDAO);
 		};
 	}
 
@@ -110,7 +110,7 @@ public class InventoryManagementApplication {
 	}
 
 	private void deleteUser(AppDAO appDAO) {
-		String userId = "john.s";
+		String userId = "susan.s";
 		System.out.println("Deleting user id: " + userId);
 		appDAO.deleteByUserId(userId);
 		System.out.println("Done");

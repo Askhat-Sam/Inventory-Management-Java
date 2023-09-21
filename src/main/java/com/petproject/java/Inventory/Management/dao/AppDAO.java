@@ -21,7 +21,8 @@ public interface AppDAO {
 
     Role findRoleByUserId(int id);
 
-//    void deleteUserDetailById(int theId); TOOOOOOOOOOOOOOOOOOOO BE FIXED
+
+
 
 
 }

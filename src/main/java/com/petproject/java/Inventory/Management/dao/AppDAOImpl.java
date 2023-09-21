@@ -36,6 +36,12 @@ public class AppDAOImpl implements AppDAO{
     public void deleteByUserId(String userId) {
         //Get user
         User tempUser=entityManager.find(User.class, userId);
+        // get the roles
+        List<Role> roles = tempUser.getRoles();
+        //break association of all roles for the user
+        for (Role role: roles){
+            role.setUser(null);
+        }
         //Delete user
         entityManager.remove(tempUser);
     }
