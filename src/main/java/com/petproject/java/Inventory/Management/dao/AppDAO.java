@@ -21,7 +21,7 @@ public interface AppDAO {
 
     Role findRoleByUserId(int id);
 
-
+    void deleteRoleById(int id);
 
 
 

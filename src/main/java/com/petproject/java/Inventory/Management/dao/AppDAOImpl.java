@@ -85,6 +85,14 @@ public class AppDAOImpl implements AppDAO{
         return entityManager.find(Role.class, id);
 
     }
+    @Transactional
+    @Override
+    public void deleteRoleById(int id) {
+        //Get user
+        Role tempRole=entityManager.find(Role.class, id);
+        // get the roles
+        entityManager.remove(tempRole);
+    }
 
 //    public User findUserByUserId(String userId) {
 //        return entityManager.find(User.class, userId);

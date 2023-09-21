@@ -22,14 +22,22 @@ public class InventoryManagementApplication {
 		return runner -> {
 //			createUserWithRoles(appDAO);
 //			findUser(appDAO);
-			deleteUser(appDAO);
+//			deleteUser(appDAO);
 //			findUserDetail(appDAO);
 //			findUserWithRoles(appDAO);
 //			findRolesForUser(appDAO);
 //			findUserWithRolesJoinFetch(appDAO);
 //			updateUser(appDAO);
 //			updateRole(appDAO);
+			deleteRoleByUserId(appDAO);
 		};
+	}
+
+	private void deleteRoleByUserId(AppDAO appDAO) {
+		int userId = 2;
+		//find the role
+		System.out.println("Deleting role for : " + userId);
+		appDAO.deleteRoleById(userId);
 	}
 
 	private void updateRole(AppDAO appDAO) {
