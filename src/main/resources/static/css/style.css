@@ -14,7 +14,7 @@
 }
 
 .info {
-    color:black;
+    color: white;
     font-size: 16px;
 }
 .icon {
@@ -36,4 +36,13 @@
     margin: auto;
     height: 100%;
 }
+.sidebar-btn{
+    background-color: #213555;
+    color: white;
+}
+.sidebar-btn:hover{
+    border: 1px solid white;
+}
+
+
 
