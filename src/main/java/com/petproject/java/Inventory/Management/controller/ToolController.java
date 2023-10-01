@@ -1,11 +1,14 @@
 package com.petproject.java.Inventory.Management.controller;
 
+import com.petproject.java.Inventory.Management.enntity.Search;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
 import jakarta.validation.Valid;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +25,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/tools")
 public class ToolController {
+    @Value("${headers}")
+    private List<String> theHeaders;
     private ToolService toolService;
     @Autowired
     private TransactionService transactionService;
@@ -30,15 +35,16 @@ public class ToolController {
 //        this.toolService = toolService;
 //    }
 
-
     public ToolController(ToolService toolService, TransactionService transactionService) {
         this.toolService = toolService;
         this.transactionService = transactionService;
+
     }
 
     @RequestMapping("/list")
     public String listTools(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
-
+        Search theSearch = new Search();
+        System.out.println("The headers" + theHeaders);
         List<Tool> theTools = toolService.findAll(keyword);
 
 
@@ -106,7 +112,10 @@ public class ToolController {
         theModel.addAttribute("tools", theTools);
         theModel.addAttribute("keyword", keyword); // to keep  previously selected option
         theModel.addAttribute("option", option); // to keep  previous input in search input box
+        theModel.addAttribute("headers", theHeaders);
+        theModel.addAttribute("search", theSearch);
 
+        System.out.println("Form model" + theModel.getAttribute("headers"));
         return "tools/list-tools";
     }
 

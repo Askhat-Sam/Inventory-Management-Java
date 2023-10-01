@@ -29,7 +29,7 @@ public class InventoryManagementApplication {
 //			findUserWithRolesJoinFetch(appDAO);
 //			updateUser(appDAO);
 //			updateRole(appDAO);
-			deleteRoleByUserId(appDAO);
+//			deleteRoleByUserId(appDAO);
 		};
 	}
 

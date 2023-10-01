@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name="tool")
 public class Tool {
@@ -27,8 +29,12 @@ public class Tool {
     @Size(min=1, message = "field is required")
     @Column(name="location")
     private String location;
+
+
     public Tool() {
     }
+
+
 
     public Tool(String partNumber, String serialNumber, String description, String location) {
         this.partNumber = partNumber;
