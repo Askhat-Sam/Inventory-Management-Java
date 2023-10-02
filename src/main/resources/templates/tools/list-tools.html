@@ -14,18 +14,6 @@
 </head>
 <body>
 
-<!--<nav class="navbar bg-body-tertiary" style="background-color: #19A7CE;">-->
-<!--    <div class="container-fluid">-->
-<!--        &lt;!&ndash;display username and role&ndash;&gt;-->
-<!--        <div class="info">-->
-<!--            User: <span sec:authentication="principal.username"></span>-->
-<!--            <br>-->
-<!--            Role(s): <span sec:authentication="principal.authorities"></span>-->
-<!--        </div>-->
-
-<!--    </div>-->
-<!--</nav>-->
-
 <!-- Modal form for add tool-->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -186,9 +174,10 @@
 <!--                            <option value="Location" th:selected = "${option=='Location'}">Location</option>-->
 <!--                        </select>-->
 
-                        <select th:field="*{header}" name="option" class="from-select me-1" area-label="">
+                        <select th:field="*{header}" name="option" class="form-select me-1" area-label="">
                             <option th:each="tempHeader : ${headers}" th:value="${tempHeader}" th:text="${tempHeader}"/>
                         </select>
+
 
                         <button class="btn btn-outline-success mx-1" type="submit">Search</button>
                         &nbsp;

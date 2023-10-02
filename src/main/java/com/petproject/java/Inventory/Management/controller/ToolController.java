@@ -31,10 +31,6 @@ public class ToolController {
     @Autowired
     private TransactionService transactionService;
 
-//    public ToolController(ToolService toolService) {
-//        this.toolService = toolService;
-//    }
-
     public ToolController(ToolService toolService, TransactionService transactionService) {
         this.toolService = toolService;
         this.transactionService = transactionService;
@@ -44,9 +40,8 @@ public class ToolController {
     @RequestMapping("/list")
     public String listTools(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
         Search theSearch = new Search();
-        System.out.println("The headers" + theHeaders);
+//        System.out.println("The headers" + theHeaders);
         List<Tool> theTools = toolService.findAll(keyword);
-
 
         List<Tool> filteredTools = new ArrayList<>();
 //        System.out.println(theTools);
@@ -115,7 +110,7 @@ public class ToolController {
         theModel.addAttribute("headers", theHeaders);
         theModel.addAttribute("search", theSearch);
 
-        System.out.println("Form model" + theModel.getAttribute("headers"));
+//        System.out.println("Form model" + theModel.getAttribute("headers"));
         return "tools/list-tools";
     }
 
