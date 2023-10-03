@@ -6,11 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
 @Table(name="tool")
-public class Tool {
+public class Tool implements Comparable<Tool>{
     @Id
     @Column(name="id")
     private int id;
@@ -92,6 +93,15 @@ public class Tool {
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Tool o) {
+        return Comparator.comparing(Tool::getPartNumber)
+                .thenComparing(Tool::getSerialNumber)
+                .thenComparing(Tool::getDescription)
+                .thenComparing(Tool::getLocation)
+                .compare(this, o);
     }
 }
 
