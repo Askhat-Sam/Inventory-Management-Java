@@ -5,6 +5,7 @@ import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -221,7 +222,7 @@ public class ToolController {
     }
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Tool theTool){
+    public String update(Tool theTool, HttpServletRequest request){
         System.out.println("Tool from the modal form - " + theTool);
         Tool updatedTool = toolService.findById(theTool.getId());
         System.out.println("Updated tool - " +updatedTool);
@@ -271,8 +272,14 @@ public class ToolController {
             transactionList.forEach(s->transactionService.save(s));
             System.out.println("Transaction database was updated");
         }
+//        System.out.println("request " + request);
+        ArrayList<String> transactionListAspect = (ArrayList<String>) request.getAttribute("transactionList2");
+        System.out.println("Transaction list from ASPECT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//        System.out.println(transactionListAspect);
 
         toolService.save(theTool);
+        System.out.println("Printing transtion atributes:>>>>>>>>" + request.getAttribute("transactionList2"));
+
         return "redirect:/tools/list";
     }
     @RequestMapping("/getOne")

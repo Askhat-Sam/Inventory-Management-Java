@@ -3,12 +3,15 @@ package com.petproject.java.Inventory.Management.aspect;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.service.ToolService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,6 +79,12 @@ public class TransactionAspect {
             }
         }
         System.out.println(transactionList);
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        request.setAttribute("transactionList2", transactionList);
+//        System.out.println("Printing transtion atributes" + request.getAttributeNames());
+//        System.out.println("Printing transtion atributes" + request.getAttribute("transactionList2"));
+
     }
     @After("execution(* com.petproject.java.Inventory.Management.service.ToolService.save(..))")
     public void afterToolSaveAspect(JoinPoint theJointPoint){
