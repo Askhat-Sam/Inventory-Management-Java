@@ -29,62 +29,56 @@ public class TransactionAspect {
 
     @Before("execution(* com.petproject.java.Inventory.Management.service.ToolService.save(..)))")
     public void beforeToolSaveAspect(JoinPoint theJoinPoint){
-        Object toolAfterUpdate = theJoinPoint.getArgs()[0];
+        Object toolJointPoint = theJoinPoint.getArgs()[0];
 
         //Get tool object before update
-        Tool theToolAfter = (Tool) toolAfterUpdate;
-        Tool toolBeforeUpdate = toolService.findById(theToolAfter.getId());
+        Tool toolAfterUpdate = (Tool) toolJointPoint;
+        Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getId());
 
-        //Get tool object after update
-        System.out.println("Tool before: " + toolBeforeUpdate);
-        System.out.println("Tool after: " + toolAfterUpdate);
-//        System.out.println("Whether is object is changed: " + (theToolAfter.compareTo(toolBeforeUpdate)));
 
         //List for keeping transactions
         List<Transaction> transactionList = new ArrayList<>();
 
         //Check if the tool was updated
-        if (theToolAfter.compareTo(toolBeforeUpdate)>0){
+        if (toolAfterUpdate.compareTo(toolBeforeUpdate)!=0){
             //Check changes of Part Number
-            if(!(theToolAfter.getPartNumber().equals(toolBeforeUpdate.getPartNumber()))){
+            if(!(toolAfterUpdate.getPartNumber().equals(toolBeforeUpdate.getPartNumber()))){
                 System.out.println("Pn was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
                         toolBeforeUpdate.getId(),
-                        "Part number was changed from " + toolBeforeUpdate.getPartNumber() + " to " + theToolAfter.getPartNumber()));
+                        "Part number was changed from '" + toolBeforeUpdate.getPartNumber() + "' to '" + toolAfterUpdate.getPartNumber()+"'"));
             }
             //Check changes of Serial Number
-            if(!(theToolAfter.getSerialNumber().equals(toolBeforeUpdate.getSerialNumber()))){
-                System.out.println("Pn was changed");
+            if(!(toolAfterUpdate.getSerialNumber().equals(toolBeforeUpdate.getSerialNumber()))){
+                System.out.println("SN was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
                         toolBeforeUpdate.getId(),
-                        "Serial number was changed from " + toolBeforeUpdate.getSerialNumber() + " to " + theToolAfter.getSerialNumber()));
+                        "Serial number was changed from '" + toolBeforeUpdate.getSerialNumber() + "' to '" + toolAfterUpdate.getSerialNumber()+"'"));
             }
             //Check changes of Description
-            if(!(theToolAfter.getDescription().equals(toolBeforeUpdate.getDescription()))){
-                System.out.println("Pn was changed");
+            if(!(toolAfterUpdate.getDescription().equals(toolBeforeUpdate.getDescription()))){
+                System.out.println("Description was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
                         toolBeforeUpdate.getId(),
-                        "Description was changed from " + toolBeforeUpdate.getDescription() + " to " + theToolAfter.getDescription()));
+                        "Description was changed from '" + toolBeforeUpdate.getDescription() + "' to '" + toolAfterUpdate.getDescription()+"'"));
             }
             //Check changes of Location
-            if(!(theToolAfter.getLocation().equals(toolBeforeUpdate.getLocation()))){
-                System.out.println("Pn was changed");
+            if(!(toolAfterUpdate.getLocation().equals(toolBeforeUpdate.getLocation()))){
+                System.out.println("Location was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
                         toolBeforeUpdate.getId(),
-                        "Location was changed from " + toolBeforeUpdate.getLocation() + " to " + theToolAfter.getLocation()));
+                        "Location was changed from '" + toolBeforeUpdate.getLocation() + "' to '" + toolAfterUpdate.getLocation()+"'"));
             }
         }
-        System.out.println(transactionList);
+        System.out.println("Transaction list from aspect" + transactionList);
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         request.setAttribute("transactionList2", transactionList);
-//        System.out.println("Printing transtion atributes" + request.getAttributeNames());
-//        System.out.println("Printing transtion atributes" + request.getAttribute("transactionList2"));
-
+        System.out.println("Aspect working");
     }
     @After("execution(* com.petproject.java.Inventory.Management.service.ToolService.save(..))")
     public void afterToolSaveAspect(JoinPoint theJointPoint){
