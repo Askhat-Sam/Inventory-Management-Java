@@ -6,16 +6,12 @@ import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -290,5 +286,11 @@ public class ToolController {
     public Tool findById(Integer theId){
         return toolService.findById(theId);
     }
+
+    @RequestMapping("/admin-user")
+    public String adminUser(){
+        return "admin-user";
+    }
+
 
 }

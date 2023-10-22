@@ -6,8 +6,8 @@
 </head>
 <body>
     <div class="container-fluid">
-        <table class="table-dark">
-            <thead>
+        <table class="table">
+            <thead class="table-dark">
             <tr>
                 <th>User id</th>
                 <th>First name</th>
@@ -16,7 +16,15 @@
                 <th>Password</th>
             </tr>
             </thead>
-
+            <tbody>
+            <tr th:each="transaction : ${transactions}" class="clickable-row">
+                <td th:text="${transaction.id}" />
+                <td th:text="${transaction.date}"/>
+                <td th:text="${transaction.user}"/>
+                <td th:text="${transaction.toolId}"/>
+                <td th:text="${transaction.transactionType}"/>
+            </tr>
+            </tbody>
         </table>
     </div>
 </body>
