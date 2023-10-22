@@ -20,6 +20,7 @@ public class TransactionServiceImpl implements TransactionService {
         if (keyword !=null){
             return transactionRepository.findAll(keyword);
         }
+        System.out.println(transactionRepository);
         return transactionRepository.findAll();
     }
 

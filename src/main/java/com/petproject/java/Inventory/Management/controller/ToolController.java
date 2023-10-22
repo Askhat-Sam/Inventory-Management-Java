@@ -3,8 +3,11 @@ package com.petproject.java.Inventory.Management.controller;
 import com.petproject.java.Inventory.Management.enntity.Search;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
+import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
+import com.petproject.java.Inventory.Management.service.UserService;
+import com.petproject.java.Inventory.Management.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,13 +28,15 @@ public class ToolController {
     @Value("${headers}")
     private List<String> theHeaders;
     private ToolService toolService;
+
+    private UserService userService;
     @Autowired
     private TransactionService transactionService;
 
-    public ToolController(ToolService toolService, TransactionService transactionService) {
+    public ToolController(ToolService toolService, TransactionService transactionService, UserService userService) {
         this.toolService = toolService;
         this.transactionService = transactionService;
-
+        this.userService =userService;
     }
 
     @RequestMapping("/list")
@@ -288,8 +293,11 @@ public class ToolController {
     }
 
     @RequestMapping("/admin-user")
-    public String adminUser(){
-        return "admin-user";
+    public String showAdminUser(Model theModel){
+        List<User> userList = userService.findAll();
+//        System.out.println("This is the user list: " + userList);
+        theModel.addAttribute("users", userList);
+        return "tools/admin-user";
     }
 
 
