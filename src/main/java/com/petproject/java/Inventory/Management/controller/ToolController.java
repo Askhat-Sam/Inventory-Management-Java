@@ -229,54 +229,10 @@ public class ToolController {
         //create transaction object
         List<Transaction> transactionList = new ArrayList<>();
         Transaction transaction = new Transaction();
-//        if (!updatedTool.equals(theTool)){
-//            if (!updatedTool.getPartNumber().equals(theTool.getPartNumber())){
-//                transactionList.add(
-//                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
-//                                SecurityContextHolder.getContext().getAuthentication().getName(),
-//                                theTool.getId(),
-//                                updatedTool.getPartNumber().equals(theTool.getPartNumber()) ? "" : "Part number was changed from: '" + updatedTool.getPartNumber() + "' to '" + theTool.getPartNumber() + "'"
-//                        )
-//                );
-//            }
-//            if (!updatedTool.getSerialNumber().equals(theTool.getSerialNumber())){
-//                transactionList.add(
-//                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
-//                                SecurityContextHolder.getContext().getAuthentication().getName(),
-//                                theTool.getId(),
-//                                updatedTool.getSerialNumber().equals(theTool.getSerialNumber()) ? "" : "Serial number was changed from: '" + updatedTool.getSerialNumber() + "' to '" + theTool.getSerialNumber() + "'"
-//                        )
-//                );
-//            }
-//            if (!updatedTool.getDescription().equals(theTool.getDescription())){
-//                transactionList.add(
-//                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
-//                                SecurityContextHolder.getContext().getAuthentication().getName(),
-//                                theTool.getId(),
-//                                updatedTool.getDescription().equals(theTool.getDescription()) ? "" : "Description was changed from: " + updatedTool.getDescription() + "' to '" + theTool.getDescription() + "'"
-//                        )
-//                );
-//            }
-//            if (!updatedTool.getLocation().equals(theTool.getLocation())){
-//                transactionList.add(
-//                        new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
-//                                SecurityContextHolder.getContext().getAuthentication().getName(),
-//                                theTool.getId(),
-//                                updatedTool.getLocation().equals(theTool.getLocation()) ? "" : "Location was changed from: '" + updatedTool.getLocation() + "' to '" + theTool.getLocation() + "'"
-//                        )
-//                );
-//            }
-//        }
-
-////        System.out.println("request " + request);
-//        ArrayList<String> transactionListAspect = (ArrayList<String>) request.getAttribute("transactionList2");
-//        System.out.println("Transaction list from ASPECT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-////        System.out.println(transactionListAspect);
+//          System.out.println(transactionListAspect);
         System.out.println("Controller before save");
         toolService.save(theTool);
         System.out.println("Controller after save");
-//        System.out.println("Printing transtion atributes in CONTROLLER:>>>>>>>>" + request.getAttribute("transactionList2"));
-        //get transactions from the TransactionAspect
         ArrayList<Transaction> transactionListAspect = (ArrayList<Transaction>) request.getAttribute("transactionList2");
         //update DB if there were changes in tools list
         System.out.println("Transaction list from controller" +  transactionListAspect);
@@ -308,5 +264,13 @@ public class ToolController {
         System.out.println("The id for getUser: " + theId);
         return userService.findByUserId(theId);
     }
+    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String updateUser(User theUser, HttpServletRequest request){
 
+        Tool updatedTool = toolService.findById(theUser.getId());
+
+        toolService.save(updatedTool);
+
+        return "redirect:/tools/admin-user";
+    }
 }
