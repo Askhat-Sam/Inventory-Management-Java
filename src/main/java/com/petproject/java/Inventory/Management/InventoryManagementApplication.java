@@ -98,24 +98,24 @@ public class InventoryManagementApplication {
 		System.out.println("Done");
 	}
 
-	private void createUserWithRoles(AppDAO appDAO) {
-		//create a user
-		User tempUser = new User("suvb.S", "ivan", "smith","I.Ivanov2@gmail.com", "$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q", 1);
-
-		//creates some roles
-		Role tempRoles1 = new Role("ROLE_EMPLOYEE");
-		Role tempRoles2 = new Role("ROLE_MANAGER");
-
-		tempUser.add(tempRoles1);
-		tempUser.add(tempRoles2);
-
-		//saving user into DB
-		System.out.println("Saving user: " + tempUser);
-		System.out.println("The roles: " + tempUser.getRoles());
-		appDAO.save(tempUser);
-
-		System.out.println("Done");
-	}
+//	private void createUserWithRoles(AppDAO appDAO) {
+//		//create a user
+//		User tempUser = new User("suvb.S", "ivan", "smith","I.Ivanov2@gmail.com", "$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q", 1);
+//
+//		//creates some roles
+//		Role tempRoles1 = new Role("ROLE_EMPLOYEE");
+//		Role tempRoles2 = new Role("ROLE_MANAGER");
+//
+//		tempUser.add(tempRoles1);
+//		tempUser.add(tempRoles2);
+//
+//		//saving user into DB
+//		System.out.println("Saving user: " + tempUser);
+//		System.out.println("The roles: " + tempUser.getRoles());
+//		appDAO.save(tempUser);
+//
+//		System.out.println("Done");
+//	}
 
 	private void deleteUser(AppDAO appDAO) {
 		String userId = "susan.s";

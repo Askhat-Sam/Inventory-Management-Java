@@ -8,7 +8,10 @@ import java.util.List;
 @Entity
 @Table(name="user")
 public class User {
+
     @Id
+    @Column(name="id")
+    private int id;
     @Column(name="user_id")
     private String userId;
     @Column(name="first_name")
@@ -30,7 +33,8 @@ public class User {
 
 
 
-    public User(String userId, String firstName, String lastName, String email, String password, int active) {
+    public User(int id, String userId, String firstName, String lastName, String email, String password, int active) {
+        this.id=id;
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +42,14 @@ public class User {
         this.password = password;
         this.active = active;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserId() {

@@ -5,6 +5,8 @@ import com.petproject.java.Inventory.Management.enntity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
     UserRepository userRepository;
@@ -17,5 +19,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> findByUserId(Integer theId) {
+
+        return userRepository.findByUserId(theId);
     }
 }

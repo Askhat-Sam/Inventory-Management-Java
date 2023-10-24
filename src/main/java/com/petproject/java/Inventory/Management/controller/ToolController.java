@@ -7,7 +7,6 @@ import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
 import com.petproject.java.Inventory.Management.service.UserService;
-import com.petproject.java.Inventory.Management.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/tools")
@@ -292,6 +292,8 @@ public class ToolController {
         return toolService.findById(theId);
     }
 
+
+
     @RequestMapping("/admin-user")
     public String showAdminUser(Model theModel){
         List<User> userList = userService.findAll();
@@ -300,5 +302,11 @@ public class ToolController {
         return "tools/admin-user";
     }
 
+    @RequestMapping("/getUser")
+    @ResponseBody
+    public Optional<User> findByUserId(Integer theId) {
+        System.out.println("The id for getUser: " + theId);
+        return userService.findByUserId(theId);
+    }
 
 }
