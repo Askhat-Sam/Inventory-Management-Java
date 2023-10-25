@@ -15,6 +15,32 @@
     <title>Users</title>
 </head>
 <body>
+    <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <!--        <a class="navbar-brand ">x</a>-->
+            <form th:action="@{/tools/transactions}" class="d-flex" role="search" modelAttribute="selectedOption">
+                <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
+
+                <!--            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">-->
+                <!--                <option value="All">All</option>-->
+                <!--                <option value="Id" th:selected = "${option=='Id'}">Id</option>-->
+                <!--                <option value="User" th:selected = "${option=='User'}">User</option>-->
+                <!--                <option value="Tool id" th:selected = "${option=='Tool id'}">Tool id</option>-->
+                <!--                <option value="Transaction type" th:selected = "${option=='Transaction type'}">Transaction type</option>-->
+                <!--            </select>-->
+
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                &nbsp;
+                <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
+                &nbsp;
+            </form>
+
+
+            <form action="#" th:action="@{/tools/list}" >
+                <input type="submit" value="Back to tools list" class="btn btn-outline-success"/>
+            </form>
+        </div>
+    </nav>
     <div class="container-fluid">
         <table class="table">
             <thead class="table-dark">
