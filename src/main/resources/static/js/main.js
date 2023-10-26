@@ -27,7 +27,6 @@ $('document').ready(function(){
 
             console.log(href)
             $.get(href, function(user, status){
-                 $('#idUserEdit').val(user.id);
                 $('#userIdUserEdit').val(user.userId);
                 $('#firstNameUserEdit').val(user.firstName);
                 $('#lastNameUserEdit').val(user.lastName);

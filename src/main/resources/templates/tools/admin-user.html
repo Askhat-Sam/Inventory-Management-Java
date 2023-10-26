@@ -21,14 +21,6 @@
             <form th:action="@{/tools/transactions}" class="d-flex" role="search" modelAttribute="selectedOption">
                 <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
-                <!--            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">-->
-                <!--                <option value="All">All</option>-->
-                <!--                <option value="Id" th:selected = "${option=='Id'}">Id</option>-->
-                <!--                <option value="User" th:selected = "${option=='User'}">User</option>-->
-                <!--                <option value="Tool id" th:selected = "${option=='Tool id'}">Tool id</option>-->
-                <!--                <option value="Transaction type" th:selected = "${option=='Transaction type'}">Transaction type</option>-->
-                <!--            </select>-->
-
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 &nbsp;
                 <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
@@ -45,7 +37,6 @@
         <table class="table">
             <thead class="table-dark">
             <tr>
-                <th>Id</th>
                 <th>User id</th>
                 <th>First name</th>
                 <th>Last name</th>
@@ -56,7 +47,6 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}" class="clickable-row">
-                <td th:text="${user.id}" />
                 <td th:text="${user.userId}" />
                 <td th:text="${user.firstName}"/>
                 <td th:text="${user.lastName}"/>
@@ -89,7 +79,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="User Id" name="userId" id="userIdUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="First Name" name="firstName" id="firstNameUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Last Name" name="lastName" id="lastNameUserEdit">
