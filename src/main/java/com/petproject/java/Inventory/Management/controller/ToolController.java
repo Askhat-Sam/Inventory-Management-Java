@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,8 @@ public class ToolController {
     private ToolService toolService;
 
     private UserService userService;
+//    @Autowired
+//    private PasswordEncoder bcryptEncoder;
     @Autowired
     private TransactionService transactionService;
 
@@ -255,6 +259,12 @@ public class ToolController {
         List<User> userList = userService.findAll();
 //        System.out.println("This is the user list: " + userList);
         theModel.addAttribute("users", userList);
+        System.out.println(userList.get(0));
+
+        String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
+
+        System.out.println(pw_hash);
+
         return "tools/admin-user";
     }
 
@@ -273,4 +283,11 @@ public class ToolController {
 
         return "redirect:/tools/admin-user";
     }
+
+
+
+
+
+
+
 }

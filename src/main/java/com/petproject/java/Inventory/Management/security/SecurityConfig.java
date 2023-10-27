@@ -31,7 +31,7 @@ public class SecurityConfig {
                         configurer
                                 .requestMatchers("/tools/list").hasRole("EMPLOYEE")
                                 .requestMatchers("/tools/showFormForAdd").hasRole("MANAGER")
-//                                .requestMatchers("/tools/list").hasRole("EMPLOYEE")
+                                .requestMatchers("/tools/admin-user").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                  .formLogin(form->
