@@ -7,7 +7,6 @@ $('document').ready(function(){
             console.log(href)
 
             $.get(href, function(tool, status){
-                 $('#idEdit').val(tool.id);
                 $('#partNumberEdit').val(tool.partNumber);
                 $('#serialNumberEdit').val(tool.serialNumber);
                 $('#descriptionEdit').val(tool.description);
