@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class LoginController {
-    private ToolService toolService;
+//    private ToolService toolService;
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage(){
         return "new-login";

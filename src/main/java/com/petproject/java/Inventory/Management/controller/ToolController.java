@@ -31,16 +31,15 @@ public class ToolController {
     private List<String> theHeaders;
     private ToolService toolService;
 
-    private UserService userService;
+
 //    @Autowired
 //    private PasswordEncoder bcryptEncoder;
     @Autowired
     private TransactionService transactionService;
 
-    public ToolController(ToolService toolService, TransactionService transactionService, UserService userService) {
+    public ToolController(ToolService toolService, TransactionService transactionService) {
         this.toolService = toolService;
         this.transactionService = transactionService;
-        this.userService =userService;
     }
 
     @RequestMapping("/list")
@@ -254,35 +253,7 @@ public class ToolController {
 
 
 
-    @RequestMapping("/admin-user")
-    public String showAdminUser(Model theModel){
-        List<User> userList = userService.findAll();
-//        System.out.println("This is the user list: " + userList);
-        theModel.addAttribute("users", userList);
-        System.out.println(userList.get(0));
 
-        String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
-
-        System.out.println(pw_hash);
-
-        return "tools/admin-user";
-    }
-
-    @RequestMapping("/getUser")
-    @ResponseBody
-    public Optional<User> findByUserId(Integer theId) {
-        System.out.println("The id for getUser: " + theId);
-        return userService.findByUserId(theId);
-    }
-    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateUser(User theUser, HttpServletRequest request){
-
-        Tool updatedTool = toolService.findById(theUser.getId());
-
-        toolService.save(updatedTool);
-
-        return "redirect:/tools/admin-user";
-    }
 
 
 
