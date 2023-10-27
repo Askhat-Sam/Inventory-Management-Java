@@ -37,6 +37,7 @@
         <table class="table">
             <thead class="table-dark">
             <tr>
+                <th>Id</th>
                 <th>User id</th>
                 <th>First name</th>
                 <th>Last name</th>
@@ -47,6 +48,7 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}" class="clickable-row">
+                <td th:text="${user.id}" />
                 <td th:text="${user.userId}" />
                 <td th:text="${user.firstName}"/>
                 <td th:text="${user.lastName}"/>
@@ -54,7 +56,7 @@
                 <td th:text="${user.password}"/>
                 <td>
 
-                    <a th:href="@{/tools/getUser(theId=${user.id})}" class="btn-edit-user btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                    <a th:href="@{/users/getUser(theId=${user.id})}" class="btn-edit-user btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
                     Edit
                 </a>
 
@@ -71,14 +73,15 @@
 
     <!-- Modal form for edit user-->
     <div class="modal fade" id="editModalUser" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <form action="#" th:action="@{/tools/updateUser}" method="PUT">
+        <form action="#" th:action="@{/users/updateUser}" method="PUT">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editModalLabel">Edit tool</h1>
+                        <h1 class="modal-title fs-5" id="editModalLabel">Edit user</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="UId" name="id" id="idUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="User Id" name="userId" id="userIdUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="First Name" name="firstName" id="firstNameUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Last Name" name="lastName" id="lastNameUserEdit">

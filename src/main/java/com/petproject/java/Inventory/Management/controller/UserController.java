@@ -27,28 +27,30 @@ public class UserController {
         List<User> userList = userService.findAll();
 //        System.out.println("This is the user list: " + userList);
         theModel.addAttribute("users", userList);
-        System.out.println(userList.get(0));
-
+//        System.out.println(userList.get(0));
+//
         String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
 
-        System.out.println(pw_hash);
+//        System.out.println(pw_hash);
 
         return "users/admin-user";
     }
 
     @RequestMapping("/getUser")
     @ResponseBody
-    public Optional<User> findByUserId(Integer theId) {
+    public User findByUserId(Integer theId) {
         System.out.println("The id for getUser: " + theId);
         return userService.findByUserId(theId);
     }
-//    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
-//    public String updateUser(User theUser, HttpServletRequest request){
-//
-//        Tool updatedTool = userService.findById(theUser.getId());
-//
-//        userService.save(updatedTool);
-//
-//        return "redirect:/tools/admin-user";
-//    }
+
+
+    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String updateUser(User theUser){
+
+        System.out.println("Updated user: " + theUser);
+
+        userService.save(theUser);
+
+        return "redirect:/users/admin-user";
+    }
 }

@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface UserService {
     List<User> findAll();
 
-    Optional<User> findByUserId(Integer theId);
+    User findByUserId(Integer theId);
+
+    void save(User theUser);
 }

@@ -251,14 +251,4 @@ public class ToolController {
         return toolService.findById(theId);
     }
 
-
-
-
-
-
-
-
-
-
-
 }

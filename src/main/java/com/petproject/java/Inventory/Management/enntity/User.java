@@ -27,11 +27,8 @@ public class User{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Role> roles;
 
-
     public User() {
     }
-
-
 
     public User(int id, String userId, String firstName, String lastName, String email, String password, int active) {
         this.id=id;
