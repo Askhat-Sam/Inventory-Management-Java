@@ -24,7 +24,6 @@
             </div>
             <div class="modal-body">
                 <form action="#" th:action="@{/tools/addNew}" method="POST">
-
                     <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description">
@@ -47,13 +46,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idEdit">
+                <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber" id="partNumberEdit">
+                <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber" id="serialNumberEdit">
+                <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description" id="descriptionEdit">
+                <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location" id="locationEdit">
 
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber" id="partNumberEdit">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber" id="serialNumberEdit">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description" id="descriptionEdit">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location" id="locationEdit">
-
-                    <button type="submit" class="btn btn-info col-5">Save</button>
+                <button type="submit" class="btn btn-info col-5">Save</button>
 
             </div>
         </div>

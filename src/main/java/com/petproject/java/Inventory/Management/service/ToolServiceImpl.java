@@ -35,7 +35,7 @@ public class ToolServiceImpl implements ToolService{
         if (result.isPresent()){
             theTool = result.get();
         } else {
-            throw new RuntimeException("Did not find tool id "+ theId);
+            throw new RuntimeException("Did not find tool id ^_^"+ theId);
         }
         return theTool;
     }

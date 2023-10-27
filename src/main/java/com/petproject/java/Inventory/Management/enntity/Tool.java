@@ -1,9 +1,6 @@
 package com.petproject.java.Inventory.Management.enntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.util.Comparator;
@@ -14,6 +11,7 @@ import java.util.List;
 public class Tool implements Comparable<Tool>{
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @Size(min=1, message = "field is required")
@@ -35,9 +33,15 @@ public class Tool implements Comparable<Tool>{
     public Tool() {
     }
 
-
-
     public Tool(String partNumber, String serialNumber, String description, String location) {
+        this.partNumber = partNumber;
+        this.serialNumber = serialNumber;
+        this.description = description;
+        this.location = location;
+    }
+
+    public Tool(int id, String partNumber, String serialNumber, String description, String location) {
+        this.id = id;
         this.partNumber = partNumber;
         this.serialNumber = serialNumber;
         this.description = description;
