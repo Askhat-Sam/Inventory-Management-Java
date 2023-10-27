@@ -58,7 +58,7 @@ public class UserController {
                              @RequestParam("password") String password) {
 
        System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
-        User newUser = new User(4, userId, firstName, lastName, email, password);
+        User newUser = new User(userId, firstName, lastName, email, password);
 
        System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
 
