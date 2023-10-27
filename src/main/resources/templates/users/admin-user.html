@@ -24,9 +24,12 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 &nbsp;
                 <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
-                &nbsp;
-            </form>
 
+            </form>
+            <!-- Button trigger modal for adding new user -->
+            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#addModalUser">
+                Add user
+            </button>
 
             <form action="#" th:action="@{/tools/list}" >
                 <input type="submit" value="Back to tools list" class="btn btn-outline-success"/>
@@ -71,7 +74,7 @@
         </table>
     </div>
 
-    <!-- Modal form for edit user-->
+    <!-- Modal form for editing the user-->
     <div class="modal fade" id="editModalUser" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <form action="#" th:action="@{/users/updateUser}" method="PUT">
             <div class="modal-dialog">
@@ -92,6 +95,28 @@
                 </div>
             </div>
         </form>
+    </div>
+    <!-- Modal form for adding new user-->
+    <div class="modal fade" id="addModalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addModalLabel">Add new user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{/users/addNewUser}" method="POST">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="User Id" name="userId">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="First Name" name="firstName">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="Last Name" name="lastName">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="Email" name="email">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="Password" name="password">
+
+                        <button type="submit" class="btn btn-info col-5">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

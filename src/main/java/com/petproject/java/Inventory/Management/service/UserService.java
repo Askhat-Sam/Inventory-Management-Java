@@ -11,4 +11,6 @@ public interface UserService {
     User findByUserId(Integer theId);
 
     void save(User theUser);
+
+    void update(User theUser);
 }

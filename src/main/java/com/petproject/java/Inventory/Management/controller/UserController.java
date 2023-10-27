@@ -7,9 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,4 +51,19 @@ public class UserController {
 
         return "redirect:/users/admin-user";
     }
+
+   @PostMapping("/addNewUser")
+    public String addNewUser(@RequestParam("userId") String userId, @RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName, @RequestParam("email") String email,
+                             @RequestParam("password") String password) {
+
+       System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
+        User newUser = new User(4, userId, firstName, lastName, email, password);
+
+       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
+
+       userService.update(newUser);
+
+       return "redirect:/users/admin-user";
+   }
 }

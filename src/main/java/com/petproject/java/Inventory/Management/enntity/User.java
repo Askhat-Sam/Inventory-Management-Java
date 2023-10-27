@@ -31,15 +31,14 @@ public class User{
     public User() {
     }
 
-    public User(int id, String userId, String firstName, String lastName, String email, String password, int active) {
-        this.id=id;
+    public User(int id, String userId, String firstName, String lastName, String email, String password) {
+        this.id = id;
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.active = active;
-
+//        this.active = active;
     }
 
     public int getId() {

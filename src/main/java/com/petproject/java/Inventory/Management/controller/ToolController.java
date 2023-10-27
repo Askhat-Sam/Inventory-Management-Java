@@ -158,17 +158,15 @@ public class ToolController {
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Tool theTool, HttpServletRequest request){
-//        System.out.println("Tool from the modal form - " + theTool);
         Tool updatedTool = toolService.findById(theTool.getId());
-//        System.out.println("Updated tool - " +updatedTool);
+
         //create transaction object
         List<Transaction> transactionList = new ArrayList<>();
         Transaction transaction = new Transaction();
-//          System.out.println(transactionListAspect);
-        System.out.println("Controller before save");
+
         toolService.save(theTool);
-        System.out.println("Controller after save");
         ArrayList<Transaction> transactionListAspect = (ArrayList<Transaction>) request.getAttribute("transactionList2");
+
         //update DB if there were changes in tools list
         System.out.println("Transaction list from controller" +  transactionListAspect);
         if (transactionListAspect.size()>0){
