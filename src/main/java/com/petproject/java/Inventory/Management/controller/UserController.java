@@ -66,4 +66,14 @@ public class UserController {
 
        return "redirect:/users/admin-user";
    }
+
+   @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("theId") int theId){
+       System.out.println(">>>>>>>>The user id to be deleted: " + theId);
+        User userToBeDeleted = userService.findByUserId(theId);
+        userService.deleteUserById(userToBeDeleted);
+
+       return "redirect:/users/admin-user";
+   }
+
 }
