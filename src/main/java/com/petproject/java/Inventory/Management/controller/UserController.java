@@ -55,7 +55,16 @@ public class UserController {
    @PostMapping("/addNewUser")
     public String addNewUser(@RequestParam("userId") String userId, @RequestParam("firstName") String firstName,
                              @RequestParam("lastName") String lastName, @RequestParam("email") String email,
-                             @RequestParam("password") String password) {
+                             @RequestParam("password") String password, @RequestParam(value="checkbox1", required = false) String checkboxEmployee,
+                             @RequestParam(value="checkbox2", required = false) String checkboxManager, @RequestParam(value="checkbox3", required = false) String checkboxAdmin) {
+       System.out.println("$$$$$$$ The value of checkbox 1: " + checkboxEmployee);
+       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
+       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
+
+
+       if (checkboxEmployee!=null) {
+
+       }
 
        System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
         User newUser = new User(userId, firstName, lastName, email, password);
