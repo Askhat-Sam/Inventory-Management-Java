@@ -25,7 +25,7 @@ public class User{
     private String password;
     @Column(name="active")
     private int active;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Role> roles;
 
     public User() {
@@ -113,6 +113,7 @@ public class User{
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
+                ", active=" + roles +
                 '}';
     }
 

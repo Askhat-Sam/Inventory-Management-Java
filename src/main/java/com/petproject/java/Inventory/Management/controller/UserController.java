@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping("/admin-user")
     public String showAdminUser(Model theModel){
         List<User> userList = userService.findAll();
-//        System.out.println("This is the user list: " + userList);
+        System.out.println("This is the user list: " + userList);
         theModel.addAttribute("users", userList);
 //        System.out.println(userList.get(0));
 //

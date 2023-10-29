@@ -5,13 +5,17 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="roles")
 public class Role {
+//    @Id
+//    @Column(name="id")
+//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//    private int id;
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     private User user;
+
+//    @Column(name="user_id")
+//    private String userId;
 
     @Column(name="user_roles")
     private String userRoles;
@@ -23,13 +27,13 @@ public class Role {
         this.userRoles = userRoles;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public User getUser() {
         return user;
@@ -49,8 +53,10 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Roles{" +
-                ", roles='" + userRoles + '\'' +
-                '}';
+
+        System.out.println("This is the ROLE: " + userRoles.split(","));
+
+
+        return userRoles;
     }
 }
