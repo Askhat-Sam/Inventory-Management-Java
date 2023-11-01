@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -25,7 +26,7 @@ public class User{
     private String password;
     @Column(name="active")
     private int active;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Role> roles;
 
     public User() {
@@ -113,16 +114,16 @@ public class User{
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
-                ", active=" + roles +
+                ", roles=" + roles +
                 '}';
     }
 
 //     add convenience methods for bi-directional relationship
-    public void add(Role tempRoles){
+    public void add(Role tempRole){
         if(roles==null){
             roles = new ArrayList<>();
         }
-        roles.add(tempRoles);
-        tempRoles.setUser(this);
+        roles.add(tempRole);
+        tempRole.setUser(this);
     }
 }

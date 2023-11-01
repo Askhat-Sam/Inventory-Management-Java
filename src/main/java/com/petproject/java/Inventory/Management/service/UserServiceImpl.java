@@ -5,7 +5,6 @@ import com.petproject.java.Inventory.Management.enntity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -22,12 +21,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUserId(Integer theId) {
-
-        return userRepository.findByUserId(theId);
-    }
-
-    @Override
     public void save(User theUser) {
         userRepository.save(theUser);
     }
@@ -41,4 +34,10 @@ public class UserServiceImpl implements UserService{
     public void deleteUserById(User theUser) {
         userRepository.delete(theUser);
     }
+
+    @Override
+    public User findByUserId(Integer theId) {
+        return userRepository.findByUserId(theId);
+    }
+
 }

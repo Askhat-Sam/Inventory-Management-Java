@@ -1,16 +1,13 @@
 package com.petproject.java.Inventory.Management.controller;
 
-import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -22,12 +19,16 @@ public class UserController {
 
     @RequestMapping("/admin-user")
     public String showAdminUser(Model theModel){
-        List<User> userList = userService.findAll();
-        System.out.println("This is the user list: " + userList);
-        theModel.addAttribute("users", userList);
-//        System.out.println(userList.get(0));
-//
-        String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
+
+        //Getting users with associated roles
+        List<User> users = userService.findAll();
+
+        //add users to model
+        theModel.addAttribute("users",users);
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@
+//        String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
 
 //        System.out.println(pw_hash);
 
@@ -57,21 +58,19 @@ public class UserController {
                              @RequestParam("lastName") String lastName, @RequestParam("email") String email,
                              @RequestParam("password") String password, @RequestParam(value="checkbox1", required = false) String checkboxEmployee,
                              @RequestParam(value="checkbox2", required = false) String checkboxManager, @RequestParam(value="checkbox3", required = false) String checkboxAdmin) {
-       System.out.println("$$$$$$$ The value of checkbox 1: " + checkboxEmployee);
-       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
-       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
+//       System.out.println("$$$$$$$ The value of checkbox 1: " + checkboxEmployee);
+//       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
+//       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
 
 
-       if (checkboxEmployee!=null) {
+//       System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
+//        User newUser = new User(userId, firstName, lastName, email, password);
 
-       }
+//       newUser.setRoles(new ArrayList<>(Arrays.asList(new Role("ROLE_EMPLOYEE"))));
 
-       System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
-        User newUser = new User(userId, firstName, lastName, email, password);
-
-       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
-
-       userService.update(newUser);
+//       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
+//
+//       userService.update(newUser);
 
        return "redirect:/users/admin-user";
    }

@@ -5,35 +5,42 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="roles")
 public class Role {
-//    @Id
-//    @Column(name="id")
-//    @GeneratedValue(strategy= GenerationType.IDENTITY)
-//    private int id;
     @Id
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+    @Column(name="user_id")
+    private String userId;
+    @Column(name="user_role")
+    private String userRole;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="join_id")
     private User user;
-
-//    @Column(name="user_id")
-//    private String userId;
-
-    @Column(name="user_roles")
-    private String userRoles;
 
     public Role() {
     }
 
-    public Role(String userRoles) {
-        this.userRoles = userRoles;
+
+    public Role(String userId, String userRole) {
+        this.userId = userId;
+        this.userRole = userRole;
     }
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
     public User getUser() {
         return user;
@@ -43,20 +50,8 @@ public class Role {
         this.user = user;
     }
 
-    public String getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(String userRoles) {
-        this.userRoles = userRoles;
-    }
-
     @Override
     public String toString() {
-
-        System.out.println("This is the ROLE: " + userRoles.split(","));
-
-
-        return userRoles;
+        return this.getUserRole();
     }
 }

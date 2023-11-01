@@ -21,7 +21,7 @@ public class SecurityConfig {
 
         //define query to retrieve a authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "select user_id, user_roles from roles where user_id=?");
+                "select user_id, user_role from roles where user_id=?");
         return jdbcUserDetailsManager;
     }
 

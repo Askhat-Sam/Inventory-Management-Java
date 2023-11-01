@@ -11,7 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+
+
     public List<User> findAll();
+
     @Query("SELECT u FROM User u WHERE u.id= :theId")
     public User findByUserId(@Param("theId") Integer theId);
 }
