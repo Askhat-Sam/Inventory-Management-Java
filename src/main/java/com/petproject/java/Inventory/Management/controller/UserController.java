@@ -64,8 +64,7 @@ public class UserController {
        String pw_hash = "{bcrypt}" + BCrypt.hashpw(password, BCrypt.gensalt());
 
        //create a new user
-       User newUser = new User(userId, firstName, lastName, email, pw_hash);
-       System.out.println(">>>>New user id: " + newUser.getId());
+       User newUser = new User(userId, firstName, lastName, email, pw_hash, 1);
 
        //read the authorities from modal form
         List<String> roles = new ArrayList<>();

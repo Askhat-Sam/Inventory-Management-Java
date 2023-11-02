@@ -28,17 +28,16 @@ public class User{
     private int active;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Role> roles;
-
     public User() {
     }
 
-    public User(String userId, String firstName, String lastName, String email, String password) {
+    public User(String userId, String firstName, String lastName, String email, String password, int active) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-//        this.active = active;
+        this.active = active;
     }
 
     public int getId() {
