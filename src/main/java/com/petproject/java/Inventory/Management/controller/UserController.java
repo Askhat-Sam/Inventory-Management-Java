@@ -30,8 +30,6 @@ public class UserController {
         //add users to model
         theModel.addAttribute("users",users);
 
-        System.out.println("Count: "+ userService.getUserCount());
-
         return "users/admin-user";
     }
 
@@ -69,8 +67,11 @@ public class UserController {
        User newUser = new User(userId, firstName, lastName, email, pw_hash);
        System.out.println(">>>>New user id: " + newUser.getId());
 
+       //create new role
+       Role tempRole = new Role(userId, "ROLE_EMPLOYEE");
+
        //add roles to the new user
-       newUser.setRoles(new ArrayList<>(Arrays.asList(new Role(userId,"ROLE_EMPLOYEE"))));
+       newUser.add(tempRole);
 
        System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
        System.out.println(">>>>>>>>>>>>>Password: " + pw_hash);

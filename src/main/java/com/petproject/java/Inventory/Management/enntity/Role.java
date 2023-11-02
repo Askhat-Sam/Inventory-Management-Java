@@ -17,6 +17,10 @@ public class Role {
     @JoinColumn(name="join_id")
     private User user;
 
+    @Column(insertable=false, updatable=false, name="join_id")
+    private long joinId;
+
+
     public Role() {
     }
 
@@ -24,7 +28,7 @@ public class Role {
         this.userRole = userRole;
     }
 
-    public Role(String userId, String userRole) {
+    public Role(String userId,  String userRole) {
         this.userId = userId;
         this.userRole = userRole;
     }
