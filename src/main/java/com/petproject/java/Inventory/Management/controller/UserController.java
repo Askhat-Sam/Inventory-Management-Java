@@ -56,25 +56,27 @@ public class UserController {
                              @RequestParam("lastName") String lastName, @RequestParam("email") String email,
                              @RequestParam("password") String password, @RequestParam(value="checkbox1", required = false) String checkboxEmployee,
                              @RequestParam(value="checkbox2", required = false) String checkboxManager, @RequestParam(value="checkbox3", required = false) String checkboxAdmin) {
-//       System.out.println("$$$$$$$ The value of checkbox 1: " + checkboxEmployee);
-//       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
-//       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
+       System.out.println("$$$$$$$ The value of checkbox 1: " + checkboxEmployee);
+       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
+       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
 
        //generate bcrypt hash
-       String pw_hash = "{bcrypt}." + BCrypt.hashpw(password, BCrypt.gensalt());
+       String pw_hash = "{bcrypt}" + BCrypt.hashpw(password, BCrypt.gensalt());
 
        //create a new user
        User newUser = new User(userId, firstName, lastName, email, pw_hash);
        System.out.println(">>>>New user id: " + newUser.getId());
 
-       //create new role
-       Role tempRole = new Role(userId, "ROLE_EMPLOYEE");
+       //read the authorities from modal form
+        List<String> roles = new ArrayList<>();
 
-       //add roles to the new user
-       newUser.add(tempRole);
+        //add roles to user
+        for (String checkbox : new String[]{checkboxEmployee, checkboxManager, checkboxAdmin}) {
+            if (checkbox!=null){
+                newUser.add(new Role(userId, checkbox));
+            }
+        }
 
-       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
-       System.out.println(">>>>>>>>>>>>>Password: " + pw_hash);
         //save new user into db
        userService.update(newUser);
 
