@@ -1,11 +1,15 @@
 package com.petproject.java.Inventory.Management.controller;
 
+import com.petproject.java.Inventory.Management.enntity.Role;
 import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -26,11 +30,7 @@ public class UserController {
         //add users to model
         theModel.addAttribute("users",users);
 
-
-//@@@@@@@@@@@@@@@@@@@@@@@@@
-//        String pw_hash = BCrypt.hashpw(userList.get(0).getPassword(), BCrypt.gensalt());
-
-//        System.out.println(pw_hash);
+        System.out.println("Count: "+ userService.getUserCount());
 
         return "users/admin-user";
     }
@@ -62,15 +62,20 @@ public class UserController {
 //       System.out.println("$$$$$$$ The value of checkbox 2: " + checkboxManager);
 //       System.out.println("$$$$$$$ The value of checkbox 3: " + checkboxAdmin);
 
+       //generate bcrypt hash
+       String pw_hash = "{bcrypt}." + BCrypt.hashpw(password, BCrypt.gensalt());
 
-//       System.out.println(">>>>>>>>>>>>>UserID to be added into DB: " + userId);
-//        User newUser = new User(userId, firstName, lastName, email, password);
+       //create a new user
+       User newUser = new User(userId, firstName, lastName, email, pw_hash);
+       System.out.println(">>>>New user id: " + newUser.getId());
 
-//       newUser.setRoles(new ArrayList<>(Arrays.asList(new Role("ROLE_EMPLOYEE"))));
+       //add roles to the new user
+       newUser.setRoles(new ArrayList<>(Arrays.asList(new Role(userId,"ROLE_EMPLOYEE"))));
 
-//       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
-//
-//       userService.update(newUser);
+       System.out.println(">>>>>>>>>>>>>User to be added into DB: " + newUser);
+       System.out.println(">>>>>>>>>>>>>Password: " + pw_hash);
+        //save new user into db
+       userService.update(newUser);
 
        return "redirect:/users/admin-user";
    }

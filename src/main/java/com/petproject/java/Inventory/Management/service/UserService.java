@@ -16,4 +16,6 @@ public interface UserService {
 
     User findByUserId(Integer theId);
 
+    long getUserCount();
+
 }

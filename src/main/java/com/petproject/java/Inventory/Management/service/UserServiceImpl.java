@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByUserId(theId);
     }
 
+    @Override
+    public long getUserCount() {
+        return userRepository.count();
+    }
+
 }

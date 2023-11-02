@@ -17,4 +17,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u WHERE u.id= :theId")
     public User findByUserId(@Param("theId") Integer theId);
+
+    long count();
 }

@@ -45,7 +45,6 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Roles</th>
                 <th>Action</th>
             </tr>
@@ -57,15 +56,8 @@
                 <td th:text="${user.firstName}"/>
                 <td th:text="${user.lastName}"/>
                 <td th:text="${user.email}"/>
-                <td th:text="${user.password}"/>
                 <td th:text="${user.roles}"/>
-<!--                <td>-->
-<!--&lt;!&ndash;                    <div th:each="role : ${user.roles}">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <span th:text="${role.userRoles}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        &lt;!&ndash; Add a separator, e.g., a comma, between roles if needed &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                        <span th:unless="${roleStat.last}">, </span>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                </td>-->
+
                 <td>
                     <a th:href="@{/users/getUser(theId=${user.id})}" class="btn-edit-user btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
                     Edit
