@@ -66,9 +66,6 @@ public class UserController {
        //create a new user
        User newUser = new User(userId, firstName, lastName, email, pw_hash, 1);
 
-       //read the authorities from modal form
-        List<String> roles = new ArrayList<>();
-
         //add roles to user
         for (String checkbox : new String[]{checkboxEmployee, checkboxManager, checkboxAdmin}) {
             if (checkbox!=null){
@@ -87,6 +84,7 @@ public class UserController {
        System.out.println(">>>>>>>>The user id to be deleted: " + theId);
         User userToBeDeleted = userService.findByUserId(theId);
         userService.deleteUserById(userToBeDeleted);
+
 
        return "redirect:/users/admin-user";
    }
