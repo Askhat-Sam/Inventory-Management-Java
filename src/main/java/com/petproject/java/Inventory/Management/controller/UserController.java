@@ -2,23 +2,24 @@ package com.petproject.java.Inventory.Management.controller;
 
 import com.petproject.java.Inventory.Management.enntity.Role;
 import com.petproject.java.Inventory.Management.enntity.User;
+import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
     private UserService userService;
+    private ToolService toolService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ToolService toolService) {
         this.userService = userService;
+        this.toolService = toolService;
     }
 
     @RequestMapping("/admin-user")
@@ -26,6 +27,8 @@ public class UserController {
 
         //Getting users with associated roles
         List<User> users = userService.findAll();
+
+
 
         //add users to model
         theModel.addAttribute("users",users);
@@ -35,20 +38,25 @@ public class UserController {
 
     @RequestMapping("/getUser")
     @ResponseBody
-    public User findByUserId(Integer theId) {
-        System.out.println("The id for getUser: " + theId);
-        return userService.findByUserId(theId);
+    public String findById(Integer theId) {
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$ " + userService.findById(theId));
+//        return userService.findById(theId);
+        return "userService.findById(theId)" + userService.findById(theId);
     }
-
+//    @RequestMapping("/getUser")
+//    @ResponseBody
+//    public Tool findById(Integer theId) {
+//        return toolService.findById(theId);
+//    }
 
     @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
     public String updateUser(User theUser){
 
         System.out.println("Updated user: " + theUser);
 
-        userService.save(theUser);
+//        userService.save(theUser);
 
-        return "redirect:/users/admin-user";
+        return null;
     }
 
    @PostMapping("/addNewUser")
@@ -80,12 +88,15 @@ public class UserController {
    }
 
    @GetMapping("/deleteUser")
+   @ResponseBody
     public String deleteUser(@RequestParam("theId") int theId){
        System.out.println(">>>>>>>>The user id to be deleted: " + theId);
-        User userToBeDeleted = userService.findByUserId(theId);
+        User userToBeDeleted = userService.findById(theId);
+       System.out.println(">>>>>>>>The user id to be deleted: " + userToBeDeleted);
+
         userService.deleteUserById(userToBeDeleted);
 
-
+//        return userService.findById(theId);
        return "redirect:/users/admin-user";
    }
 

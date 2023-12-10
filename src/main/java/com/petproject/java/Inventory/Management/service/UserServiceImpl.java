@@ -1,10 +1,12 @@
 package com.petproject.java.Inventory.Management.service;
 
 import com.petproject.java.Inventory.Management.dao.UserRepository;
+import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -36,8 +38,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUserId(Integer theId) {
-        return userRepository.findByUserId(theId);
+    public User findById(Integer theId) {
+
+        Optional<User> result = userRepository.findById(theId);
+
+        User theUser = null;
+
+        if (result.isPresent()){
+            theUser = result.get();
+        } else {
+            throw new RuntimeException("Did not find tool id ^_^"+ theId);
+        }
+        return theUser;
+
     }
 
     @Override

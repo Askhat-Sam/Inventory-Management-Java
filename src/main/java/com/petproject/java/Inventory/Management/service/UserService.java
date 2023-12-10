@@ -14,7 +14,7 @@ public interface UserService {
 
     void deleteUserById(User theUser);
 
-    User findByUserId(Integer theId);
+    User findById(Integer theId);
 
     long getUserCount();
 

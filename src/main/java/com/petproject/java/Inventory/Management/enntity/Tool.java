@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.util.Comparator;
-import java.util.List;
 
 @Entity
 @Table(name="tool")
 public class Tool implements Comparable<Tool>{
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Size(min=1, message = "field is required")
@@ -46,6 +45,7 @@ public class Tool implements Comparable<Tool>{
         this.serialNumber = serialNumber;
         this.description = description;
         this.location = location;
+
     }
 
     public String getLocation() {
