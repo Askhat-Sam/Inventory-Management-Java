@@ -70,6 +70,52 @@ tr{
     display:block;
 }
 
+.div {
+
+}
+.container {
+    width: 100%;
+}
+
+table {
+    width:100%
+}
+
+table, th, td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+
+.navbar {
+    border-top: 1px solid grey;
+}
+
+tr {
+    line-height: 10px;
+}
+
+.table-header {
+    background-color: #E2E4E8;
+    border: 1px solid grey;
+}
+
+.flex-container {
+   display: flex;
+   background-color: #E2E4E8;
+}
+
+.flex-container > div {
+  background-color: #E2E4E8;
+  margin: 5px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+button {
+    margin: 5px;
+    background-color: white;
+}
+
 
 
 
