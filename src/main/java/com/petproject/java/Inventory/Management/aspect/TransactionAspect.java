@@ -33,7 +33,7 @@ public class TransactionAspect {
 
         //Get tool object before update
         Tool toolAfterUpdate = (Tool) toolJointPoint;
-        Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getId());
+        Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getBarcodeId());
 
 
         //List for keeping transactions
@@ -46,7 +46,7 @@ public class TransactionAspect {
                 System.out.println("Pn was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Part number was changed from '" + toolBeforeUpdate.getPartNumber() + "' to '" + toolAfterUpdate.getPartNumber()+"'"));
             }
             //Check changes of Serial Number
@@ -54,7 +54,7 @@ public class TransactionAspect {
                 System.out.println("SN was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Serial number was changed from '" + toolBeforeUpdate.getSerialNumber() + "' to '" + toolAfterUpdate.getSerialNumber()+"'"));
             }
             //Check changes of Description
@@ -62,7 +62,7 @@ public class TransactionAspect {
                 System.out.println("Description was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Description was changed from '" + toolBeforeUpdate.getDescription() + "' to '" + toolAfterUpdate.getDescription()+"'"));
             }
             //Check changes of Location
@@ -70,7 +70,7 @@ public class TransactionAspect {
                 System.out.println("Location was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Location was changed from '" + toolBeforeUpdate.getLocation() + "' to '" + toolAfterUpdate.getLocation()+"'"));
             }
         }

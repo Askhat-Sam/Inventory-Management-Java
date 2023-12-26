@@ -3,17 +3,13 @@ package com.petproject.java.Inventory.Management.controller;
 import com.petproject.java.Inventory.Management.enntity.Search;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
-import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
-import com.petproject.java.Inventory.Management.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/tools")
@@ -54,7 +49,7 @@ public class ToolController {
             switch(option) {
                 case "Id":
                     for (Tool tool: theTools) {
-                        if (String.valueOf(tool.getId()).contains(keyword)){
+                        if (String.valueOf(tool.getBarcodeId()).contains(keyword)){
                             filteredTools.add(tool);
                         }
                     }
@@ -133,7 +128,7 @@ public class ToolController {
         Transaction deleteTransaction = new Transaction(
                 new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        deletedTool.getId(),
+                        deletedTool.getBarcodeId(),
                         "Tool with id '" + theId + "' was removed."
         );
         transactionService.save(deleteTransaction);
@@ -142,10 +137,11 @@ public class ToolController {
     }
 
     @PostMapping("/addNew")
-    public String addTool(@RequestParam("partNumber") String partNumber, @RequestParam("serialNumber") String serialNumber,
-                          @RequestParam("description") String description, @RequestParam("location") String location){
+    public String addTool(@RequestParam("parentBarcodeId") String parentBarcodeId, @RequestParam("partNumber") String partNumber, @RequestParam("serialNumber") String serialNumber,
+                          @RequestParam("description") String description, @RequestParam("location") String location, @RequestParam("shelf") String shelf,
+                            @RequestParam("verificationType") String verificationType, @RequestParam("nextDueDate") String nextDueDate){
         //create new tool object
-        Tool theTool = new Tool( partNumber, serialNumber, description, location);
+        Tool theTool = new Tool(parentBarcodeId, partNumber, serialNumber, description, location, shelf, verificationType, nextDueDate);
 
         System.out.println(">>>>>>>>>>>>>Tool to be added into DB: " + theTool);
 
@@ -158,7 +154,7 @@ public class ToolController {
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Tool theTool, HttpServletRequest request){
-        Tool updatedTool = toolService.findById(theTool.getId());
+        Tool updatedTool = toolService.findById(theTool.getBarcodeId());
 
         //create transaction object
         List<Transaction> transactionList = new ArrayList<>();

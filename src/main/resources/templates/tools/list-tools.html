@@ -24,10 +24,14 @@
             </div>
             <div class="modal-body">
                 <form action="#" th:action="@{/tools/addNew}" method="POST">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Parent barcode id" name="parentBarcodeId">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Shelf" name="shelf">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Verification type" name="verificationType">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Next due date" name="nextDueDate">
 
                     <button type="submit" class="btn btn-info col-5">Save</button>
                 </form>
@@ -88,10 +92,10 @@
     <div class="div">
         <table class="table">
             <tr class="table-header">
-                <th>Id</th>
+                <th>Barcode Id</th>
+                <th>Parent Barcode Id</th>
                 <th>Part Number</th>
                 <th>Serial Number</th>
-                <th>Parent Item</th>
                 <th>Description</th>
                 <th>Location</th>
                 <th>Shelve</th>
@@ -99,24 +103,24 @@
                 <th>Next due date</th>
                 <th>Action</th>
             </tr>
-            <tbody class="">
+            <tbody class="table-body">
             <tr th:each="tool : ${tools}" class="" style="height: 20px">
-                <td th:text="${tool.id}" />
+                <td th:text="${tool.barcodeId}" />
+                <td th:text="${tool.parentBarcodeId}" />
                 <td th:text="${tool.partNumber}"/>
                 <td th:text="${tool.serialNumber}"/>
-                <td th:text="${tool.partNumber}"/>
                 <td th:text="${tool.description}"/>
                 <td th:text="${tool.location}"/>
-                <td th:text="${tool.id}"/>
-                <td th:text="${tool.id}"/>
-                <td th:text="${tool.id}"/>
+                <td th:text="${tool.shelf}"/>
+                <td th:text="${tool.verificationType}"/>
+                <td th:text="${tool.nextDueDate}"/>
                 <td>
 
-                    <a th:href="@{/tools/getOne(theId=${tool.id})}" class="action-btn-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                    <a th:href="@{/tools/getOne(theId=${tool.barcodeId})}" class="action-btn-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
                         Edit
                     </a>
 
-                    <a th:href="@{/tools/delete(toolId=${tool.id})}"
+                    <a th:href="@{/tools/delete(toolId=${tool.barcodeId})}"
                        class="action-btn-delete"
                        onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false" sec:authorize="hasRole('ROLE_ADMIN')">
                         Delete

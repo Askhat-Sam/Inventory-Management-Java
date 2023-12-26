@@ -14,7 +14,10 @@ table, th, td {
   border: 1px solid grey;
   border-collapse: collapse;
   font-size: 14px;
+  font-family: sans-serif;
 }
+
+
 
 .navbar {
     border-top: 1px solid grey;
@@ -25,10 +28,13 @@ tr {
 }
 
 .table-header {
-    background-color: #E2E4E8;
+    background: rgb(242,240,240);
+    background: linear-gradient(180deg, rgba(242,240,240,1) 22%, rgba(195,194,194,1) 100%);
     border: 1px solid grey;
 }
-
+.table-body {
+    background-color: #f9fcde;
+}
 .flex-container {
    display: flex;
    background-color: #E2E4E8;
@@ -51,26 +57,9 @@ button {
 }
 
 .action-btn-edit {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 3px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: -4px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition-duration: 0.4s;
-
-        color: white;
-}
-
-.action-btn-delete {
-    background-color: red;
-    border: none;
-    color: white;
+    background-color: #E2E4E8;
+    border: 1px solid grey;
+    color: black;
     padding: 3px;
     text-align: center;
     text-decoration: none;
@@ -80,8 +69,21 @@ button {
     cursor: pointer;
     border-radius: 2px;
     transition-duration: 0.4s;
+}
 
-    color: white;
+.action-btn-delete {
+    background-color: #E2E4E8;
+    border: 1px solid grey;
+    color: black;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: -4px 2px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition-duration: 0.4s;
 }
 
 .action-btn-delete: hover {
