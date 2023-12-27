@@ -1,23 +1,27 @@
-//$('document').ready(function(){
-//    $('.table .btn-edit').on('click', function(e){
-//            e.preventDefault();
-//
-//            var href=$(this).attr('href')
-//
-//            console.log(href)
-//
-//            $.get(href, function(tool, status){
-//                $('#idEdit').val(tool.id);
-//                $('#partNumberEdit').val(tool.partNumber);
-//                $('#serialNumberEdit').val(tool.serialNumber);
-//                $('#descriptionEdit').val(tool.description);
-//                $('#locationEdit').val(tool.location);
+$('document').ready(function(){
+    $('.table .action-btn-edit').on('click', function(e){
+            e.preventDefault();
+
+            var href=$(this).attr('href')
+
+            console.log(href)
+
+            $.get(href, function(tool, status){
+                $('#barcodeIdEdit').val(tool.barcodeId);
+                $('#parentBarcodeIdEdit').val(tool.parentBarcodeId);
+                $('#partNumberEdit').val(tool.partNumber);
+                $('#serialNumberEdit').val(tool.serialNumber);
+                $('#descriptionEdit').val(tool.description);
+                $('#locationEdit').val(tool.location);
+                $('#shelfEdit').val(tool.shelf);
+                $('#verificationTypeEdit').val(tool.verificationType);
+                $('#nextDueDateEdit').val(tool.nextDueDate);
 //                console.log($('#locationEdit').val(tool.location));
-//            });
-//
-//            $('#editModal').modal('show');
-//     });
-//});
+            });
+
+            $('#editModal').modal('show');
+     });
+});
 
 //$('document').ready(function(){
 //    $('.btn-edit-user').on('click', function(e){

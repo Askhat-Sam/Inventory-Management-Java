@@ -1,4 +1,6 @@
-
+body {
+    background-color: #F0F0F0;
+}
 .div {
 
 }
@@ -16,7 +18,14 @@ table, th, td {
   font-size: 14px;
   font-family: sans-serif;
 }
-
+.navbar-header {
+    font-weight: bold;
+}
+.navbar-header:hover {
+    color: red;
+    font-size:20px;
+    font-weight: 900;
+}
 
 
 .navbar {
@@ -33,7 +42,7 @@ tr {
     border: 1px solid grey;
 }
 .table-body {
-    background-color: #f9fcde;
+    background-color: #FFFFD6;
 }
 .flex-container {
    display: flex;

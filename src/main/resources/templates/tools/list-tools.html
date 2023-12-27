@@ -32,7 +32,6 @@
                     <input type="text" class="form-control mb-4 w-75" placeholder="Shelf" name="shelf">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Verification type" name="verificationType">
                     <input type="text" class="form-control mb-4 w-75" placeholder="Next due date" name="nextDueDate">
-
                     <button type="submit" class="btn btn-info col-5">Save</button>
                 </form>
             </div>
@@ -42,7 +41,7 @@
 
 <!-- Modal form for edit tool-->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <form action="#" th:action="@{/tools/update}" method="PUT">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,26 +49,46 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idEdit">
-                <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber" id="partNumberEdit">
-                <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber" id="serialNumberEdit">
-                <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description" id="descriptionEdit">
-                <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location" id="locationEdit">
+                <form action="#" th:action="@{/tools/update}" method="PUT">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Barcode Id" name="id" id="barcodeIdEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Parent Barcode Id" name="parentBarcodeId" id="parentBarcodeIdEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Part Number" name="partNumber" id="partNumberEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber" id="serialNumberEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description" id="descriptionEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location" id="locationEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Shelf" name="shelf" id="shelfEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Verification Type" name="verificationType" id="verificationTypeEdit">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Next due date" name="nextDueDate" id="nextDueDateEdit">
 
-                <button type="submit" class="btn btn-info col-5">Save</button>
-
+                    <button type="submit" class="btn btn-info col-5">Save</button>
+                </form>
             </div>
         </div>
     </div>
-    </form>
+
 </div>
 
 <div class="div">
     <div class="div flex-container">
-        <div class="div">Users</div>
-        <div class="div">Dashboard</div>
-        <div class="div">History</div>
-        <div class="div">Logout</div>
+
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="Dashboard" class="btn sidebar-btn"/>
+            </form>
+            <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
+                <input type="submit" value="Users" class="btn sidebar-btn"/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="Reports" class="btn sidebar-btn"/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="History" class="btn sidebar-btn"/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="Settings" class="btn sidebar-btn"/>
+            </form>
+            <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
+                <input type="submit" value="Logout" class="btn sidebar-btn" />
+            </form>
     </div>
     <div class="navbar flex-container">
         <form th:action="@{/tools/list}" th:object="${search}" class="navbar-form" role="search" modelAttribute="selectedOption">
