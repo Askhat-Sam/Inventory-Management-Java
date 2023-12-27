@@ -43,8 +43,18 @@ public class Tool implements Comparable<Tool>{
 
     public Tool() {
     }
-
     public Tool(String parentBarcodeId, String partNumber, String serialNumber, String description, String location, String shelf, String verificationType, String nextDueDate) {
+        this.parentBarcodeId = parentBarcodeId;
+        this.partNumber = partNumber;
+        this.serialNumber = serialNumber;
+        this.description = description;
+        this.location = location;
+        this.shelf = shelf;
+        this.verificationType = verificationType;
+        this.nextDueDate = nextDueDate;
+    }
+    public Tool(int barcodeId, String parentBarcodeId, String partNumber, String serialNumber, String description, String location, String shelf, String verificationType, String nextDueDate) {
+        this.barcodeId = barcodeId;
         this.parentBarcodeId = parentBarcodeId;
         this.partNumber = partNumber;
         this.serialNumber = serialNumber;

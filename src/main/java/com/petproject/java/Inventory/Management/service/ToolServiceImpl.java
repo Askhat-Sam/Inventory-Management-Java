@@ -2,14 +2,13 @@ package com.petproject.java.Inventory.Management.service;
 
 import com.petproject.java.Inventory.Management.dao.ToolRepository;
 import com.petproject.java.Inventory.Management.enntity.Tool;
-import com.petproject.java.Inventory.Management.enntity.Transaction;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
-public class ToolServiceImpl implements ToolService{
+public class ToolServiceImpl implements ToolService {
 
     private ToolRepository toolRepository;
 
@@ -19,7 +18,7 @@ public class ToolServiceImpl implements ToolService{
 
     @Override
     public List<Tool> findAll(String keyword) {
-        if (keyword !=null){
+        if (keyword != null) {
             return toolRepository.findAll(keyword);
         }
         return toolRepository.findAll();
@@ -28,14 +27,14 @@ public class ToolServiceImpl implements ToolService{
 
     @Override
     public Tool findById(int theId) {
-        Optional<Tool> result = toolRepository.findById(theId);
+        Optional<Tool> result = toolRepository.findByBarcodeId(theId);
 
         Tool theTool = null;
 
-        if (result.isPresent()){
+        if (result.isPresent()) {
             theTool = result.get();
         } else {
-            throw new RuntimeException("Did not find tool id ^_^"+ theId);
+            throw new RuntimeException("Did not find tool id ^_^" + theId);
         }
         return theTool;
     }
@@ -66,10 +65,10 @@ public class ToolServiceImpl implements ToolService{
 
         Tool theTool = null;
 
-        if (result.isPresent()){
+        if (result.isPresent()) {
             theTool = result.get();
         } else {
-            throw new RuntimeException("Did not find tool id "+ theId);
+            throw new RuntimeException("Did not find tool id " + theId);
         }
         return theTool;
     }

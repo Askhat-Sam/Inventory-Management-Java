@@ -25,8 +25,6 @@ public class ToolController {
     @Value("${headers}")
     private List<String> theHeaders;
     private ToolService toolService;
-
-
 //    @Autowired
 //    private PasswordEncoder bcryptEncoder;
     @Autowired
@@ -153,8 +151,9 @@ public class ToolController {
     }
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Tool theTool, HttpServletRequest request){
+    public String update( Tool theTool, HttpServletRequest request){
         Tool updatedTool = toolService.findById(theTool.getBarcodeId());
+        System.out.println(updatedTool);
 
         //create transaction object
         List<Transaction> transactionList = new ArrayList<>();
