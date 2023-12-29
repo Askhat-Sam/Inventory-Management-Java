@@ -1,15 +1,27 @@
 body {
     background-color: #F0F0F0;
 }
-.div {
 
-}
 .container {
     width: 100%;
 }
 
 table {
     width:100%
+}
+.main-container{
+    border: 1px solid grey;
+    margin: 5px;
+}
+.table-container{
+    margin: 0px 5px 5px 5px;
+    padding: 0px 5px 5px 5px;
+}
+.header-container{
+    background-color: #8397B9;
+    color: white;
+    font-weight: bold;
+
 }
 
 table, th, td {
@@ -19,22 +31,31 @@ table, th, td {
   font-family: sans-serif;
 }
 .navbar-header {
-    font-weight: bold;
+    margin-left: 5px;
 }
-.navbar-header:hover {
-    color: red;
-    font-size:20px;
-    font-weight: 900;
+.navbar-header>input {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    color: black;
+    font-weight: 500;
+}
+.navbar-header>input:hover {
+    color: white;
 }
 
 
 .navbar {
+
     border-top: 1px solid grey;
+    align-items: center;
 }
 
-tr, th {
-    line-height: 9px;
-    height:25px;
+tr{
+    line-height: 20px;
+}
+td, th{
+    padding-left: 4px;
 }
 
 
@@ -42,13 +63,14 @@ tr, th {
     background: rgb(242,240,240);
     background: linear-gradient(180deg, rgba(242,240,240,1) 22%, rgba(195,194,194,1) 100%);
     border: 1px solid grey;
+     line-height: 22px;
 }
 .table-body {
     background-color: #FFFFD6;
 }
 .flex-container {
    display: flex;
-   background-color: #E2E4E8;
+  align-items: center;
 }
 
 .flex-container > div {
@@ -64,37 +86,44 @@ button {
     border: 1px solid grey;
 }
 .navbar-form {
+    display: flex;
     margin: 0px 10px;
+    height: auto;
+}
+select, option{
+     line-height: 24px;
 }
 
 .action-btn-edit {
     background-color: #E2E4E8;
     border: 1px solid grey;
     color: black;
-    padding: 3px;
+    padding: 1px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+
     font-size: 14px;
-    margin: -4px 2px;
+    margin: 2px;
     cursor: pointer;
     border-radius: 2px;
     transition-duration: 0.4s;
+    height: 18px;
 }
 
 .action-btn-delete {
     background-color: #E2E4E8;
     border: 1px solid grey;
     color: black;
-    padding: 3px;
+    padding: 1px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+
     font-size: 14px;
-    margin: -4px 2px;
+    margin: 2px;
     cursor: pointer;
     border-radius: 2px;
     transition-duration: 0.4s;
+    height: 18px;
 }
 
 .action-btn-delete: hover {

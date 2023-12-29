@@ -15,64 +15,82 @@
     <title>Users</title>
 </head>
 <body>
-    <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <!--        <a class="navbar-brand ">x</a>-->
-            <form th:action="@{/tools/transactions}" class="d-flex" role="search" modelAttribute="selectedOption">
-                <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
-
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                &nbsp;
-                <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
-
+    <div class="main-container">
+        <div class="flex-container header-container">
+            <form action="#" th:action="@{/tools/list}" class="navbar-header">
+                <input type="submit" value="Dashboard" class=""/>
             </form>
-            <!-- Button trigger modal for adding new user -->
-            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#addModalUser">
-                Add user
-            </button>
-
-            <form action="#" th:action="@{/tools/list}" >
-                <input type="submit" value="Back to tools list" class="btn btn-outline-success"/>
+            <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
+                <input type="submit" value="Users" class="input-header"/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="Reports" class=""/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="History" class=""/>
+            </form>
+            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+                <input type="submit" value="Settings" class=""/>
+            </form>
+            <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
+                <input type="submit" value="Logout" class="" />
             </form>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <table class="table">
-            <thead class="table-dark">
-            <tr>
-                <th>Id</th>
-                <th>User id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}" class="clickable-row">
-                <td th:text="${user.id}" />
-                <td th:text="${user.userId}" />
-                <td th:text="${user.firstName}"/>
-                <td th:text="${user.lastName}"/>
-                <td th:text="${user.email}"/>
-                <td th:text="${user.roles}"/>
+        <div class="navbar flex-container">
+            <form th:action="@{/tools/list}" th:object="${search}" class="navbar-form" role="search" modelAttribute="selectedOption">
+                <input  name="keyword" th:value="${keyword}" class="" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
-                <td>
-                    <a th:href="@{/users/getUser(theId=${user.id})}" class="btn-edit-user btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
-                    Edit
-                    </a>
-                    <a th:href="@{/users/deleteUser(theId=${user.id})}"
-                       class="btn btn-danger btn-sm"
-                       onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false" sec:authorize="hasRole('ROLE_ADMIN')">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--                <select th:field="*{header}" name="option" class="search-list" area-label="">-->
+<!--                    <option th:each="tempHeader : ${headers}" th:value="${tempHeader}" th:text="${tempHeader}"/>-->
+<!--                </select>-->
+
+                <button class="" type="submit">Search</button>
+                &nbsp;
+                <button class="" type="button" onclick="clearFilter()">Clear</button>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="" data-bs-toggle="modal" data-bs-target="#addModal">
+                    Add tool
+                </button>
+            </form>
+        </div>
+        <div class="table-container">
+            <table class="">
+                <thead >
+                <tr class="table-header">
+                    <th>Id</th>
+                    <th>User id</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+                <tr th:each="user : ${users}" class="clickable-row">
+                    <td th:text="${user.id}" />
+                    <td th:text="${user.userId}" />
+                    <td th:text="${user.firstName}"/>
+                    <td th:text="${user.lastName}"/>
+                    <td th:text="${user.email}"/>
+                    <td th:text="${user.roles}"/>
+
+                    <td>
+                        <a th:href="@{/users/getUser(theId=${user.id})}" class="action-btn-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                            Edit
+                        </a>
+                        <a th:href="@{/users/deleteUser(theId=${user.id})}"
+                           class="action-btn-delete"
+                           onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false" sec:authorize="hasRole('ROLE_ADMIN')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <!-- Modal form for editing the user-->
     <div class="modal fade" id="editModalUser" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <form action="#" th:action="@{/users/updateUser}" method="PUT">
@@ -83,7 +101,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control mb-4 w-75" placeholder="UId" name="id" id="idUserEdit">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="User Id" name="userId" id="userIdUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="First Name" name="firstName" id="firstNameUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Last Name" name="lastName" id="lastNameUserEdit">

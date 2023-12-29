@@ -11,26 +11,25 @@
 </head>
 <body>
 
-<div class="">
-    <div class="flex-container">
-
+<div class="main-container">
+    <div class="flex-container header-container">
         <form action="#" th:action="@{/tools/list}" class="navbar-header">
-            <input type="submit" value="Dashboard" class="btn sidebar-btn"/>
+            <input type="submit" value="Dashboard" class=""/>
         </form>
         <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
-            <input type="submit" value="Users" class="btn sidebar-btn"/>
+            <input type="submit" value="Users" class=""/>
         </form>
         <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-            <input type="submit" value="Reports" class="btn sidebar-btn"/>
+            <input type="submit" value="Reports" class=""/>
         </form>
         <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-            <input type="submit" value="History" class="btn sidebar-btn"/>
+            <input type="submit" value="History" class=""/>
         </form>
         <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-            <input type="submit" value="Settings" class="btn sidebar-btn"/>
+            <input type="submit" value="Settings" class=""/>
         </form>
         <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
-            <input type="submit" value="Logout" class="btn sidebar-btn" />
+            <input type="submit" value="Logout" class="" />
         </form>
     </div>
     <div class="navbar flex-container">
@@ -51,31 +50,34 @@
             &nbsp;
         </form>
     </div>
-
-</div>
-
-
-<div class="">
-    <table class="">
-        <thead class="table-header">
+    <div class="table-container">
+        <table class="">
+            <thead>
+            <tr class="table-header">
                 <th>Transaction id</th>
                 <th>Date</th>
                 <th>User</th>
                 <th>Tool Id</th>
                 <th>Transaction type</th>
-        </thead>
+            </tr>
+            </thead>
 
-        <tbody class="table-body">
-        <tr th:each="transaction : ${transactions}" class="">
-            <td th:text="${transaction.id}" />
-            <td th:text="${transaction.date}"/>
-            <td th:text="${transaction.user}"/>
-            <td th:text="${transaction.toolId}"/>
-            <td th:text="${transaction.transactionType}"/>
-        </tr>
-        </tbody>
-    </table>
+            <tbody class="table-body">
+            <tr th:each="transaction : ${transactions}" class="">
+                <td th:text="${transaction.id}" />
+                <td th:text="${transaction.date}"/>
+                <td th:text="${transaction.user}"/>
+                <td th:text="${transaction.toolId}"/>
+                <td th:text="${transaction.transactionType}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
+
+
+
 <script type="text/javascript">
     function clearFilter(){
         window.location = '/tools/transactions';
