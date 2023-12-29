@@ -32,9 +32,11 @@ table, th, td {
     border-top: 1px solid grey;
 }
 
-tr {
+tr, th {
     line-height: 9px;
+    height:25px;
 }
+
 
 .table-header {
     background: rgb(242,240,240);
