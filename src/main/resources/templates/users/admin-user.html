@@ -9,9 +9,6 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <script type="text/javascript" src="../static/js/code.jquery.com_jquery-3.7.1.min.js" th:src="@{/js/code.jquery.com_jquery-3.7.1.min.js}"></script>
     <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-
     <title>Users</title>
 </head>
 <body>
@@ -49,8 +46,8 @@
                 <button class="" type="button" onclick="clearFilter()">Clear</button>
 
                 <!-- Button trigger modal -->
-                <button type="button" class="" data-bs-toggle="modal" data-bs-target="#addModal">
-                    Add tool
+                <button type="button" class="add-user" data-bs-toggle="modal" data-bs-target="#addModal" id="editUserModal">
+                    Add user
                 </button>
             </form>
         </div>
@@ -77,7 +74,7 @@
                     <td th:text="${user.roles}"/>
 
                     <td>
-                        <a th:href="@{/users/getUser(theId=${user.id})}" class="action-btn-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                        <a th:href="@{/users/getUser(theId=${user.id})}" class="action-user-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
                             Edit
                         </a>
                         <a th:href="@{/users/deleteUser(theId=${user.id})}"
@@ -116,7 +113,7 @@
         </form>
     </div>
 
-    <!-- Modal form for adding new user-->
+<!--     Modal form for adding new user-->
     <div class="modal fade" id="addModalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -152,5 +149,35 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+<!--<script>-->
+<!--    //Get modal-->
+<!--var modal = document.getElementById("myModal");-->
+
+<!--//Get button-->
+<!--var btn = document.getElementById("editUserModal");-->
+<!--console.log(btn);-->
+<!--// Get the <span> element that closes the modal-->
+<!--var span = document.getElementsByClassName("close")[0];-->
+
+<!--// When the user clicks the button, open the modal-->
+<!--document.addEventListener("DOMContentLoaded", function(event) {-->
+<!--    btn.addEventListener("click", function(event) {-->
+<!--        modal.style.display = "block";-->
+<!--    });-->
+<!--});-->
+<!--// When the user clicks on <span> (x), close the modal-->
+<!--span.onclick = function() {-->
+<!--  modal.style.display = "none";-->
+<!--}-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+<!--  if (event.target == modal) {-->
+<!--    modal.style.display = "none";-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
 </body>
 </html>

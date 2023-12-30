@@ -36,18 +36,19 @@ public class UserController {
         return "users/admin-user";
     }
 
-    @RequestMapping("/getUser")
-    @ResponseBody
-    public String findById(Integer theId) {
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$ " + userService.findById(theId));
-//        return userService.findById(theId);
-        return "userService.findById(theId)" + userService.findById(theId);
-    }
 //    @RequestMapping("/getUser")
 //    @ResponseBody
-//    public Tool findById(Integer theId) {
-//        return toolService.findById(theId);
+//    public User findById(Integer theId) {
+//        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$ " + userService.findById(theId));
+////        return userService.findById(theId);
+//        return  userService.findById(theId);
 //    }
+    @RequestMapping("/getUser")
+    @ResponseBody
+    public User findById(Integer theId) {
+        System.out.println("HERE: " + userService.findById(theId));
+        return userService.findById(theId);
+    }
 
     @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
     public String updateUser(User theUser){

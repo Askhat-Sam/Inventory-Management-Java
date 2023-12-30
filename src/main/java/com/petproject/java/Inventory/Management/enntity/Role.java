@@ -1,5 +1,6 @@
 package com.petproject.java.Inventory.Management.enntity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Role {
     private String userId;
     @Column(name="user_role")
     private String userRole;
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="join_id")
     private User user;
