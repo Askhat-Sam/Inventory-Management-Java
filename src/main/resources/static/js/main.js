@@ -29,15 +29,31 @@ $('document').ready(function(){
 
             var href=$(this).attr('href')
 
-            console.log(href);
+
             $.get(href, function(user, status){
-            console.log(user);
+
                 $('#idUserEdit').val(user.id);
                 $('#userIdUserEdit').val(user.userId);
                 $('#firstNameUserEdit').val(user.firstName);
                 $('#lastNameUserEdit').val(user.lastName);
                 $('#emailUserEdit').val(user.email);
                 $('#passwordUserEdit').val(user.password);
+                user.roles.forEach(el=>{
+                    if (typeof el !== "undefined") {
+                        console.log(el.userRole)
+                        if (el.userRole == "ROLE_EMPLOYEE") {
+                            $('#inlineCheckboxEdit1').prop('checked', true);
+                        } else if (el.userRole == "ROLE_MANAGER") {
+                            $('#inlineCheckboxEdit2').prop('checked', true);
+                        } else if (el.userRole == "ROLE_ADMIN") {
+                            $('#inlineCheckboxEdit3').prop('checked', true);
+                        }
+                    }
+                });
+
+
+
+
             });
 
             $('#editModalUser').modal('show');
