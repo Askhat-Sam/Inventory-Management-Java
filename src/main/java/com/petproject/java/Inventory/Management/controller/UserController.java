@@ -50,14 +50,21 @@ public class UserController {
         return userService.findById(theId);
     }
 
-    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateUser(User theUser){
+//    @RequestMapping(value="/updateUser", method = {RequestMethod.PUT, RequestMethod.GET})
+//    public String updateUser(User theUser){
+//
+//        System.out.println("Updated user: " + theUser);
+//
+////        userService.save(theUser);
+//
+//        return null;
+//    }
+    @PostMapping("/updateUser")
+    public void updateUser(@RequestParam("userId") String userId, @RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName, @RequestParam("email") String email,
+                             @RequestParam("password") String password, @RequestParam(value="checkbox1", required = false) String checkboxEmployee,
+                             @RequestParam(value="checkbox2", required = false) String checkboxManager, @RequestParam(value="checkbox3", required = false) String checkboxAdmin){
 
-        System.out.println("Updated user: " + theUser);
-
-//        userService.save(theUser);
-
-        return null;
     }
 
    @PostMapping("/addNewUser")
@@ -89,7 +96,7 @@ public class UserController {
    }
 
    @GetMapping("/deleteUser")
-   @ResponseBody
+//   @ResponseBody
     public String deleteUser(@RequestParam("theId") int theId){
        System.out.println(">>>>>>>>The user id to be deleted: " + theId);
         User userToBeDeleted = userService.findById(theId);

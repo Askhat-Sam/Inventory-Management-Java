@@ -40,7 +40,6 @@ $('document').ready(function(){
                 $('#passwordUserEdit').val(user.password);
                 user.roles.forEach(el=>{
                     if (typeof el !== "undefined") {
-                        console.log(el.userRole)
                         if (el.userRole == "ROLE_EMPLOYEE") {
                             $('#inlineCheckboxEdit1').prop('checked', true);
                         } else if (el.userRole == "ROLE_MANAGER") {
