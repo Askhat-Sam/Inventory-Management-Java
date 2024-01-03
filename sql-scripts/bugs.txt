@@ -1,4 +1,4 @@
-#1. Not return to admin-user page after delete of user - CLOSED
+#1. Not return to admin-user page after delete of user - (SOLVED)
 #2. Settings page
 #3. Reports page
 #4. Red color for overdue dates on list-tools page
@@ -13,4 +13,5 @@
 #13. Scrolling in fixed header in list-tools page
 #14. Scrolling in fixed header in admin-user  page
 #15. Scrolling in fixed header in transaction-history page
-#16.
+#16. fix: fix search function in list-tools page
+#17. fix: fix search function in admin-user page

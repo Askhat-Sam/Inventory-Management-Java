@@ -1,9 +1,12 @@
 package com.petproject.java.Inventory.Management.controller;
 
 import com.petproject.java.Inventory.Management.enntity.Role;
+import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
+import com.petproject.java.Inventory.Management.service.TransactionService;
 import com.petproject.java.Inventory.Management.service.UserService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +20,12 @@ public class UserController {
     private UserService userService;
     private ToolService toolService;
 
-    public UserController(UserService userService, ToolService toolService) {
+    private TransactionService transactionService;
+
+    public UserController(UserService userService, ToolService toolService, TransactionService transactionService) {
         this.userService = userService;
         this.toolService = toolService;
+        this.transactionService = transactionService;
     }
 
     @RequestMapping("/admin-user")
@@ -107,5 +113,14 @@ public class UserController {
 //        return userService.findById(theId);
        return "redirect:/users/admin-user";
    }
+
+    @RequestMapping("/transactions")
+    public String transactionHistory(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
+        List<Transaction> theTransactions = transactionService.findAll(keyword);
+
+        System.out.println("Transactions from SQL " + theTransactions);
+        theModel.addAttribute("transactions", theTransactions);
+        return "users/transactions-history-user";
+    }
 
 }
