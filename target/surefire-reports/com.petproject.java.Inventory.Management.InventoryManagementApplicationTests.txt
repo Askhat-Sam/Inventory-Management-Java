@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.petproject.java.Inventory.Management.InventoryManagementApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.443 s - in com.petproject.java.Inventory.Management.InventoryManagementApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.244 s - in com.petproject.java.Inventory.Management.InventoryManagementApplicationTests
