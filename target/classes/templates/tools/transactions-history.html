@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Transaction history</title>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="flex-container header-container">
+        <form action="#" th:action="@{/tools/list}" class="navbar-header">
+            <input type="submit" value="Dashboard" class=""/>
+        </form>
+        <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
+            <input type="submit" value="Users" class=""/>
+        </form>
+        <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+            <input type="submit" value="Reports" class=""/>
+        </form>
+        <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+            <input type="submit" value="History" class=""/>
+        </form>
+        <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
+            <input type="submit" value="Settings" class=""/>
+        </form>
+        <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
+            <input type="submit" value="Logout" class="" />
+        </form>
+    </div>
+    <div class="navbar flex-container">
+        <form th:action="@{/tools/transactions}" class="navbar-form" role="search" modelAttribute="selectedOption">
+            <input  name="keyword" th:value="${keyword}" class="" type="search" placeholder="Search" aria-label="Search" id="searchText">
+
+            <!--            <select th:value="*{option}" name="option" class="form-select" aria-label="Default select example">-->
+            <!--                <option value="All">All</option>-->
+            <!--                <option value="Id" th:selected = "${option=='Id'}">Id</option>-->
+            <!--                <option value="User" th:selected = "${option=='User'}">User</option>-->
+            <!--                <option value="Tool id" th:selected = "${option=='Tool id'}">Tool id</option>-->
+            <!--                <option value="Transaction type" th:selected = "${option=='Transaction type'}">Transaction type</option>-->
+            <!--            </select>-->
+
+            <button class="" type="submit">Search</button>
+            &nbsp;
+            <button class="" type="button" onclick="clearFilter()">Clear</button>
+            &nbsp;
+        </form>
+    </div>
+    <div class="table-container">
+        <table class="">
+            <thead>
+            <tr class="table-header">
+                <th>Transaction id</th>
+                <th>Date</th>
+                <th>User</th>
+                <th>Tool Id</th>
+                <th>Transaction type</th>
+            </tr>
+            </thead>
+
+            <tbody class="table-body">
+            <tr th:each="transaction : ${transactions}" class="">
+                <td th:text="${transaction.id}" />
+                <td th:text="${transaction.date}"/>
+                <td th:text="${transaction.user}"/>
+                <td th:text="${transaction.toolId}"/>
+                <td th:text="${transaction.transactionType}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    function clearFilter(){
+        window.location = '/tools/transactions';
+    }
+</script>
+</body>
+</html>
