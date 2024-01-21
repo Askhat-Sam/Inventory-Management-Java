@@ -34,8 +34,6 @@ public class UserController {
         //Getting users with associated roles
         List<User> users = userService.findAll();
 
-
-
         //add users to model
         theModel.addAttribute("users",users);
 

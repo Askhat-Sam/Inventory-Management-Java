@@ -39,6 +39,7 @@ public class ToolController {
     public String listTools(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
         Search theSearch = new Search();
 //        System.out.println("The headers" + theHeaders);
+        System.out.println("keyword : " + keyword);
         List<Tool> theTools = toolService.findAll(keyword);
 
         List<Tool> filteredTools = new ArrayList<>();
