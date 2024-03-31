@@ -49,7 +49,7 @@ public class ToolController {
             switch(option) {
                 case "Id":
                     for (Tool tool: theTools) {
-                        if (String.valueOf(tool.getId()).contains(keyword)){
+                        if (String.valueOf(tool.getBarcodeId()).contains(keyword)){
                             filteredTools.add(tool);
                         }
                     }
@@ -128,7 +128,7 @@ public class ToolController {
         Transaction deleteTransaction = new Transaction(
                 new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        deletedTool.getId(),
+                        deletedTool.getBarcodeId(),
                         "Tool with id '" + theId + "' was removed."
         );
         transactionService.save(deleteTransaction);
@@ -140,7 +140,7 @@ public class ToolController {
     public String addTool(@RequestParam("partNumber") String partNumber, @RequestParam("serialNumber") String serialNumber,
                           @RequestParam("description") String description, @RequestParam("location") String location){
         //create new tool object
-        Tool theTool = new Tool( partNumber, serialNumber, description, location);
+        Tool theTool = new Tool(partNumber, serialNumber, description, location);
 
         System.out.println(">>>>>>>>>>>>>Tool to be added into DB: " + theTool);
 
@@ -153,7 +153,7 @@ public class ToolController {
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Tool theTool, HttpServletRequest request){
-        Tool updatedTool = toolService.findById(theTool.getId());
+        Tool updatedTool = toolService.findById(theTool.getBarcodeId());
 
         //create transaction object
         List<Transaction> transactionList = new ArrayList<>();

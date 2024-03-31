@@ -64,6 +64,13 @@ public class Tool implements Comparable<Tool>{
         this.verificationType = verificationType;
         this.nextDueDate = nextDueDate;
     }
+    public Tool(String partNumber, String serialNumber, String description, String location) {
+        this.partNumber = partNumber;
+        this.serialNumber = serialNumber;
+        this.description = description;
+        this.location = location;
+    }
+
 
     public String getLocation() {
         return location;

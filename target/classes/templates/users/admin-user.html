@@ -9,85 +9,70 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <script type="text/javascript" src="../static/js/code.jquery.com_jquery-3.7.1.min.js" th:src="@{/js/code.jquery.com_jquery-3.7.1.min.js}"></script>
     <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+
     <title>Users</title>
 </head>
 <body>
-    <div class="main-container">
-        <div class="flex-container header-container">
-            <form action="#" th:action="@{/tools/list}" class="navbar-header">
-                <input type="submit" value="Dashboard" class=""/>
-            </form>
-            <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
-                <input type="submit" value="Users" class="input-header"/>
-            </form>
-            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-                <input type="submit" value="Reports" class=""/>
-            </form>
-            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-                <input type="submit" value="History" class=""/>
-            </form>
-            <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-                <input type="submit" value="Settings" class=""/>
-            </form>
-            <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
-                <input type="submit" value="Logout" class="" />
-            </form>
-        </div>
-        <div class="navbar flex-container">
-            <form th:action="@{/tools/list}" th:object="${search}" class="navbar-form" role="search" modelAttribute="selectedOption">
-                <input  name="keyword" th:value="${keyword}" class="" type="search" placeholder="Search" aria-label="Search" id="searchText">
+    <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <!--        <a class="navbar-brand ">x</a>-->
+            <form th:action="@{/tools/transactions}" class="d-flex" role="search" modelAttribute="selectedOption">
+                <input  name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
 
-<!--                <select th:field="*{header}" name="option" class="search-list" area-label="">-->
-<!--                    <option th:each="tempHeader : ${headers}" th:value="${tempHeader}" th:text="${tempHeader}"/>-->
-<!--                </select>-->
-
-                <button class="" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>
                 &nbsp;
-                <button class="" type="button" onclick="clearFilter()">Clear</button>
+                <button class="btn btn-outline-success" type="button" onclick="clearFilter()">Clear</button>
 
-                <!-- Button trigger modal -->
-                <button type="button" class="add-user" data-bs-toggle="modal" data-bs-target="#addModal" id="editUserModal">
-                    Add user
-                </button>
+            </form>
+            <!-- Button trigger modal for adding new user -->
+            <button type="button" class="btn btn-primary btn-sm col-2 mx-1" data-bs-toggle="modal" data-bs-target="#addModalUser">
+                Add user
+            </button>
+
+            <form action="#" th:action="@{/tools/list}" >
+                <input type="submit" value="Back to tools list" class="btn btn-outline-success"/>
             </form>
         </div>
-        <div class="table-container">
-            <table class="">
-                <thead >
-                <tr class="table-header">
-                    <th>Id</th>
-                    <th>User id</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Email</th>
-                    <th>Roles</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody class="table-body">
-                <tr th:each="user : ${users}" class="clickable-row">
-                    <td th:text="${user.id}" />
-                    <td th:text="${user.userId}" />
-                    <td th:text="${user.firstName}"/>
-                    <td th:text="${user.lastName}"/>
-                    <td th:text="${user.email}"/>
-                    <td th:text="${user.roles}"/>
+    </nav>
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>User id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}" class="clickable-row">
+                <td th:text="${user.id}" />
+                <td th:text="${user.userId}" />
+                <td th:text="${user.firstName}"/>
+                <td th:text="${user.lastName}"/>
+                <td th:text="${user.email}"/>
+                <td th:text="${user.roles}"/>
 
-                    <td>
-                        <a th:href="@{/users/getUser(theId=${user.id})}" class="action-user-edit" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
-                            Edit
-                        </a>
-                        <a th:href="@{/users/deleteUser(theId=${user.id})}"
-                           class="action-btn-delete"
-                           onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false" sec:authorize="hasRole('ROLE_ADMIN')">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                <td>
+                    <a th:href="@{/users/getUser(theId=${user.id})}" class="btn-edit-user btn btn-warning btn-sm" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+                    Edit
+                    </a>
+                    <a th:href="@{/users/deleteUser(theId=${user.id})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="if (!(confirm('Are you sure you want to delete this tool?'))) return false" sec:authorize="hasRole('ROLE_ADMIN')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+
     <!-- Modal form for editing the user-->
     <div class="modal fade" id="editModalUser" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <form action="#" th:action="@{/users/updateUser}" method="PUT">
@@ -98,27 +83,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control mb-4 w-75" placeholder="Id" name="id" id="idUserEdit">
+                        <input type="text" class="form-control mb-4 w-75" placeholder="UId" name="id" id="idUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="User Id" name="userId" id="userIdUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="First Name" name="firstName" id="firstNameUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Last Name" name="lastName" id="lastNameUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Email" name="email" id="emailUserEdit">
                         <input type="text" class="form-control mb-4 w-75" placeholder="Password" name="password" id="passwordUserEdit">
-                        <div>
-                            <p>Authorities:</p>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckboxEdit1" name="checkbox1" value="ROLE_EMPLOYEE">
-                                <label class="form-check-label" for="inlineCheckbox1">Employee</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckboxEdit2" name="checkbox2" value="ROLE_MANAGER">
-                                <label class="form-check-label" for="inlineCheckbox2">Manager</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckboxEdit3" name="checkbox3" value="ROLE_ADMIN">
-                                <label class="form-check-label" for="inlineCheckbox3">Admin</label>
-                            </div>
-                        </div>
+
                         <button type="submit" class="btn btn-info col-5">Save</button>
 
                     </div>
@@ -127,7 +98,7 @@
         </form>
     </div>
 
-<!--     Modal form for adding new user-->
+    <!-- Modal form for adding new user-->
     <div class="modal fade" id="addModalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -163,35 +134,5 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-<!--<script>-->
-<!--    //Get modal-->
-<!--var modal = document.getElementById("myModal");-->
-
-<!--//Get button-->
-<!--var btn = document.getElementById("editUserModal");-->
-<!--console.log(btn);-->
-<!--// Get the <span> element that closes the modal-->
-<!--var span = document.getElementsByClassName("close")[0];-->
-
-<!--// When the user clicks the button, open the modal-->
-<!--document.addEventListener("DOMContentLoaded", function(event) {-->
-<!--    btn.addEventListener("click", function(event) {-->
-<!--        modal.style.display = "block";-->
-<!--    });-->
-<!--});-->
-<!--// When the user clicks on <span> (x), close the modal-->
-<!--span.onclick = function() {-->
-<!--  modal.style.display = "none";-->
-<!--}-->
-
-<!--// When the user clicks anywhere outside of the modal, close it-->
-<!--window.onclick = function(event) {-->
-<!--  if (event.target == modal) {-->
-<!--    modal.style.display = "none";-->
-<!--  }-->
-<!--}-->
-<!--</script>-->
 </body>
 </html>
