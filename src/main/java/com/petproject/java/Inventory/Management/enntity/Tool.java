@@ -9,7 +9,7 @@ import java.util.Comparator;
 @Table(name="tool")
 public class Tool implements Comparable<Tool>{
     @Id
-    @Column(name = "id")
+    @Column(name = "barcode_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

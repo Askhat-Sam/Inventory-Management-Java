@@ -3,17 +3,13 @@ package com.petproject.java.Inventory.Management.controller;
 import com.petproject.java.Inventory.Management.enntity.Search;
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
-import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
 import com.petproject.java.Inventory.Management.service.TransactionService;
-import com.petproject.java.Inventory.Management.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/tools")
@@ -32,8 +27,6 @@ public class ToolController {
     private ToolService toolService;
 
 
-//    @Autowired
-//    private PasswordEncoder bcryptEncoder;
     @Autowired
     private TransactionService transactionService;
 
