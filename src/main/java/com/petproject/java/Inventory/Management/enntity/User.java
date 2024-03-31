@@ -1,10 +1,10 @@
 package com.petproject.java.Inventory.Management.enntity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -26,6 +26,7 @@ public class User{
     private String password;
     @Column(name="active")
     private int active;
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Role> roles;
     public User() {

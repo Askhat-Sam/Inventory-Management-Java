@@ -2,7 +2,10 @@ package com.petproject.java.Inventory.Management.aspect;
 
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
+import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
+import com.petproject.java.Inventory.Management.service.TransactionService;
+import com.petproject.java.Inventory.Management.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -22,9 +25,35 @@ import java.util.List;
 @Component
 public class TransactionAspect {
     private ToolService toolService;
+    private UserService userService;
+    private TransactionService transactionService;
 
-    public TransactionAspect(ToolService toolService) {
+    public TransactionAspect(ToolService toolService, UserService userService, TransactionService transactionService) {
         this.toolService = toolService;
+        this.userService = userService;
+        this.transactionService = transactionService;
+    }
+    @After("execution(* com.petproject.java.Inventory.Management.service.UserService.deleteUserById(..))")
+    public void afterUserDeleteAspect(JoinPoint theJoinPoint){
+        Object userJointPoint = theJoinPoint.getArgs()[0];
+        User user = (User) userJointPoint;
+
+        System.out.println("toolJointPoint: " + userJointPoint);
+        //List for keeping transactions
+        List<Transaction> transactionList = new ArrayList<>();
+
+        //Create transaction and add it to transactionList
+        transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                SecurityContextHolder.getContext().getAuthentication().getName(),
+                user.getId(),
+                String.format("User %s was removed", user.getUserId())
+                ));
+        System.out.println("Transaction list from aspect" + transactionList.get(0));
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        request.setAttribute("transactionList2", transactionList);
+        System.out.println("Aspect working");
+        transactionService.save(transactionList.get(0));
     }
 
     @Before("execution(* com.petproject.java.Inventory.Management.service.ToolService.save(..)))")
@@ -33,7 +62,7 @@ public class TransactionAspect {
 
         //Get tool object before update
         Tool toolAfterUpdate = (Tool) toolJointPoint;
-        Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getId());
+        Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getBarcodeId());
 
 
         //List for keeping transactions
@@ -46,7 +75,7 @@ public class TransactionAspect {
                 System.out.println("Pn was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Part number was changed from '" + toolBeforeUpdate.getPartNumber() + "' to '" + toolAfterUpdate.getPartNumber()+"'"));
             }
             //Check changes of Serial Number
@@ -54,7 +83,7 @@ public class TransactionAspect {
                 System.out.println("SN was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Serial number was changed from '" + toolBeforeUpdate.getSerialNumber() + "' to '" + toolAfterUpdate.getSerialNumber()+"'"));
             }
             //Check changes of Description
@@ -62,7 +91,7 @@ public class TransactionAspect {
                 System.out.println("Description was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Description was changed from '" + toolBeforeUpdate.getDescription() + "' to '" + toolAfterUpdate.getDescription()+"'"));
             }
             //Check changes of Location
@@ -70,7 +99,7 @@ public class TransactionAspect {
                 System.out.println("Location was changed");
                 transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
                         SecurityContextHolder.getContext().getAuthentication().getName(),
-                        toolBeforeUpdate.getId(),
+                        toolBeforeUpdate.getBarcodeId(),
                         "Location was changed from '" + toolBeforeUpdate.getLocation() + "' to '" + toolAfterUpdate.getLocation()+"'"));
             }
         }
@@ -89,8 +118,8 @@ public class TransactionAspect {
 //        System.out.println("Tool after update: " + toolAfterUpdate);
     }
 
-    @After("execution(* com.petproject.java.Inventory.Management.service.ToolService.deleteById(..))")
-    public void afterToolDeleteAspect(){
-//        System.out.println("ASPECT TYPE: deleted @AFTER");
-    }
+//    @After("execution(* com.petproject.java.Inventory.Management.service.ToolService.deleteById(..))")
+//    public void afterToolDeleteAspect(){
+////        System.out.println("ASPECT TYPE: deleted @AFTER");
+//    }
 }

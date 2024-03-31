@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ToolRepository extends JpaRepository<Tool, Integer> {
@@ -15,10 +16,9 @@ public interface ToolRepository extends JpaRepository<Tool, Integer> {
             "s.barcode_id like %:keyword% OR s.part_number like %:keyword% " +
             "OR s.serial_number LIKE %:keyword% OR s.description like %:keyword% OR s.location like %:keyword%", nativeQuery = true)
     public List<Tool> findAll(@Param("keyword") String keyword);
-    //
-    //
-    //TO redo with generic type !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    Optional<Tool> findByBarcodeId(int theId);
+
 
 
 }

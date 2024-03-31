@@ -1,0 +1,17 @@
+#1. Not return to admin-user page after delete of user - (SOLVED)
+#2. Settings page
+#3. Reports page
+#4. Red color for overdue dates on list-tools page
+#5. No transaction for removing user
+#6. No transaction for adding user
+#7. No transaction for adding tool
+#8. To change modal windows from bootstrap to pure CSS
+#9. Input verification in modal windows
+#10. Filter in list-tools page
+#11. Filter in admin-user page
+#12. Filter in transaction-history page
+#13. Scrolling in fixed header in list-tools page
+#14. Scrolling in fixed header in admin-user  page
+#15. Scrolling in fixed header in transaction-history page
+#16. fix: fix search function in list-tools page
+#17. fix: fix search function in admin-user page

@@ -27,6 +27,8 @@ public class ToolController {
     private ToolService toolService;
 
 
+//    @Autowired
+//    private PasswordEncoder bcryptEncoder;
     @Autowired
     private TransactionService transactionService;
 
