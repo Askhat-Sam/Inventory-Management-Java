@@ -4,15 +4,10 @@ import com.petproject.java.Inventory.Management.enntity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
-//    @Query(value = "SELECT * from transaction t", nativeQuery = true)
-//    public List<Transaction> findAll();
-
+public interface UserTransactionRepository extends JpaRepository<Transaction, Integer> {
     @Query(value = "SELECT * from transaction s WHERE " +
             "s.id like %:keyword% OR s.user like %:keyword% " +
             "OR s.tool_id LIKE %:keyword% OR s.transaction_type like %:keyword%", nativeQuery = true)

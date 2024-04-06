@@ -4,7 +4,7 @@ import com.petproject.java.Inventory.Management.enntity.Tool;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import com.petproject.java.Inventory.Management.enntity.User;
 import com.petproject.java.Inventory.Management.service.ToolService;
-import com.petproject.java.Inventory.Management.service.TransactionService;
+import com.petproject.java.Inventory.Management.service.ToolTransactionService;
 import com.petproject.java.Inventory.Management.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
@@ -26,9 +26,9 @@ import java.util.List;
 public class TransactionAspect {
     private ToolService toolService;
     private UserService userService;
-    private TransactionService transactionService;
+    private ToolTransactionService transactionService;
 
-    public TransactionAspect(ToolService toolService, UserService userService, TransactionService transactionService) {
+    public TransactionAspect(ToolService toolService, UserService userService, ToolTransactionService transactionService) {
         this.toolService = toolService;
         this.userService = userService;
         this.transactionService = transactionService;

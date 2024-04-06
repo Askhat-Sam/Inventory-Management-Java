@@ -26,15 +26,11 @@ public class ToolController {
     private List<String> theHeaders;
     private ToolService toolService;
 
-
-//    @Autowired
-//    private PasswordEncoder bcryptEncoder;
     @Autowired
     private TransactionService transactionService;
 
-    public ToolController(ToolService toolService, TransactionService transactionService) {
+    public ToolController(ToolService toolService) {
         this.toolService = toolService;
-        this.transactionService = transactionService;
     }
 
     @RequestMapping("/list")
