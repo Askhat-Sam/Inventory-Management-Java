@@ -115,7 +115,7 @@ public class UserController {
     @RequestMapping("/transactions")
     public String transactionHistory(Model theModel, @Param("keyword") String keyword, @Param("option")  String option){
         List<Transaction> theTransactions = transactionService.findAll(keyword);
-
+        System.out.println("I am here");
         System.out.println("Transactions from SQL " + theTransactions);
         theModel.addAttribute("transactions", theTransactions);
         return "users/transactions-history-user";
