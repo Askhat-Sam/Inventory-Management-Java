@@ -14,7 +14,7 @@
 <div class="main-container">
     <div class="flex-container header-container">
         <form action="#" th:action="@{/tools/list}" class="navbar-header">
-            <input type="submit" value="Dashboard" class=""/>
+            <input type="submit" value="Tools" class=""/>
         </form>
         <form action="#" th:action="@{/users/admin-user}" class="navbar-header">
             <input type="submit" value="Users" class=""/>
@@ -23,9 +23,12 @@
             <input type="submit" value="Reports" class=""/>
         </form>
         <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
-            <input type="submit" value="History" class=""/>
+            <input type="submit" value="History-tools" class=""/>
         </form>
         <form action="#" th:action="@{/users/transactions}" class="navbar-header">
+            <input type="submit" value="History-users" class=""/>
+        </form>
+        <form action="#" th:action="@{/tools/transactions}" class="navbar-header">
             <input type="submit" value="Settings" class=""/>
         </form>
         <form action="#" th:action="@{/logout}" method="POST" class="navbar-header">
