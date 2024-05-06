@@ -56,7 +56,8 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public void update(Tool theTool) {
-        toolRepository.save(theTool);
+        System.out.println("Update controller activated");
+        this.save(theTool);
     }
 
     @Override

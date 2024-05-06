@@ -96,6 +96,9 @@ public class Tool implements Comparable<Tool>{
                 .thenComparing(Tool::getSerialNumber)
                 .thenComparing(Tool::getDescription)
                 .thenComparing(Tool::getLocation)
+                .thenComparing(Tool::getShelf)
+                .thenComparing(Tool::getNextDueDate)
+                .thenComparing(Tool::getVerificationType)
                 .compare(this, o);
     }
 }

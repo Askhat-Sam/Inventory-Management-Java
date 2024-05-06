@@ -65,11 +65,16 @@ public class TransactionAspect {
         Tool toolBeforeUpdate = toolService.findById(toolAfterUpdate.getBarcodeId());
 
 
+        System.out.println(toolBeforeUpdate);
+        System.out.println(toolAfterUpdate);
+
         //List for keeping transactions
         List<Transaction> transactionList = new ArrayList<>();
 
         //Check if the tool was updated
         if (toolAfterUpdate.compareTo(toolBeforeUpdate)!=0){
+
+            System.out.println("Tool has been changed");
             //Check changes of Part Number
             if(!(toolAfterUpdate.getPartNumber().equals(toolBeforeUpdate.getPartNumber()))){
                 System.out.println("Pn was changed");
@@ -101,6 +106,15 @@ public class TransactionAspect {
                         SecurityContextHolder.getContext().getAuthentication().getName(),
                         toolBeforeUpdate.getBarcodeId(),
                         "Location was changed from '" + toolBeforeUpdate.getLocation() + "' to '" + toolAfterUpdate.getLocation()+"'"));
+            }
+
+            //Check changes of shelve
+            if(!(toolAfterUpdate.getShelf().equals(toolBeforeUpdate.getShelf()))){
+                System.out.println("Shelve was changed");
+                transactionList.add(new Transaction(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()),
+                        SecurityContextHolder.getContext().getAuthentication().getName(),
+                        toolBeforeUpdate.getBarcodeId(),
+                        "Shelve was changed from '" + toolBeforeUpdate.getShelf() + "' to '" + toolAfterUpdate.getShelf()+"'"));
             }
         }
         System.out.println("Transaction list from aspect" + transactionList);

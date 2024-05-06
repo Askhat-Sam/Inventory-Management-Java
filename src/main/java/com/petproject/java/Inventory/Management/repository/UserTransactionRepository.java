@@ -11,5 +11,5 @@ public interface UserTransactionRepository extends JpaRepository<Transaction, In
     @Query(value = "SELECT * from transaction s WHERE " +
             "s.id like %:keyword% OR s.user like %:keyword% " +
             "OR s.tool_id LIKE %:keyword% OR s.transaction_type like %:keyword%", nativeQuery = true)
-    public List<Transaction> findAll(@Param("keyword") String keyword);
+    List<Transaction> findAll(@Param("keyword") String keyword);
 }

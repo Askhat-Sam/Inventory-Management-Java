@@ -15,7 +15,7 @@ public interface ToolRepository extends JpaRepository<Tool, Integer> {
     @Query(value = "SELECT * from tool s WHERE " +
             "s.barcode_id like %:keyword% OR s.part_number like %:keyword% " +
             "OR s.serial_number LIKE %:keyword% OR s.description like %:keyword% OR s.location like %:keyword%", nativeQuery = true)
-    public List<Tool> findAll(@Param("keyword") String keyword);
+    List<Tool> findAll(@Param("keyword") String keyword);
 
     Optional<Tool> findByBarcodeId(int theId);
 
