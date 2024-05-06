@@ -1,6 +1,6 @@
 package com.petproject.java.Inventory.Management.service;
 
-import com.petproject.java.Inventory.Management.dao.UserTransactionRepository;
+import com.petproject.java.Inventory.Management.repository.UserTransactionRepository;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 

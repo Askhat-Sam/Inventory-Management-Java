@@ -1,6 +1,6 @@
 package com.petproject.java.Inventory.Management.service;
 
-import com.petproject.java.Inventory.Management.dao.ToolTransactionRepository;
+import com.petproject.java.Inventory.Management.repository.ToolTransactionRepository;
 import com.petproject.java.Inventory.Management.enntity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

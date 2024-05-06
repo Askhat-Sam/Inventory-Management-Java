@@ -1,6 +1,6 @@
 package com.petproject.java.Inventory.Management.service;
 
-import com.petproject.java.Inventory.Management.dao.UserRepository;
+import com.petproject.java.Inventory.Management.repository.UserRepository;
 import com.petproject.java.Inventory.Management.enntity.User;
 import org.springframework.stereotype.Service;
 

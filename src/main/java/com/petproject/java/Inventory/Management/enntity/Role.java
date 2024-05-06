@@ -2,8 +2,14 @@ package com.petproject.java.Inventory.Management.enntity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name="roles")
 public class Role {
     @Id
@@ -22,10 +28,6 @@ public class Role {
     @Column(insertable=false, updatable=false, name="join_id")
     private long joinId;
 
-
-    public Role() {
-    }
-
     public Role(String userRole) {
         this.userRole = userRole;
     }
@@ -33,30 +35,6 @@ public class Role {
     public Role(String userId,  String userRole) {
         this.userId = userId;
         this.userRole = userRole;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

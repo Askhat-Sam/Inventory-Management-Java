@@ -1,4 +1,4 @@
-package com.petproject.java.Inventory.Management.dao;
+package com.petproject.java.Inventory.Management.repository;
 
 import com.petproject.java.Inventory.Management.enntity.Tool;
 import org.springframework.data.jpa.repository.JpaRepository;

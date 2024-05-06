@@ -1,8 +1,14 @@
 package com.petproject.java.Inventory.Management.enntity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name="transaction_user")
 public class TransactionUser {
     @Id
@@ -18,45 +24,10 @@ public class TransactionUser {
     @Column(name="transaction_type")
     private String transactionType;
 
-    public TransactionUser() {
-    }
-
     public TransactionUser(String date, String user, int toolId, String transactionType) {
         this.date = date;
         this.user = user;
         this.toolId = toolId;
-        this.transactionType = transactionType;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public int getToolId() {
-        return toolId;
-    }
-
-    public void setToolId(int toolId) {
-        this.toolId = toolId;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
 
