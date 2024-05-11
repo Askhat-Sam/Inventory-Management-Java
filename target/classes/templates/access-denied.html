@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2 class="errorMessage">
-        Access Denied - <span sec:authentication="principal.username"></span> are not authorized to access this resource.</h2>
+        Access Denied - User <span sec:authentication="principal.username"></span> is not authorized to access this resource.</h2>
     <a th:href="@{/tools/list}">Back to main page</a>
 </body>
 </html>

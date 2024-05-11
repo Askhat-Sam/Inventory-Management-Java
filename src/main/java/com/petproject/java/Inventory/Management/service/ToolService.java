@@ -9,14 +9,14 @@ public interface ToolService {
     List<Tool> findAll(String keyword);
     Tool findById(int theId);
 
-    void save(Tool theTool);
+    Tool save(Tool theTool);
 
     void deleteById(int theId);
 
     //get tool by keyword
     public List<Tool> findByKeyWord(String keyword);
 
-    public void update(Tool theTool);
+    public Tool update(Tool theTool);
 
     public Tool getOne(int theId);
 }

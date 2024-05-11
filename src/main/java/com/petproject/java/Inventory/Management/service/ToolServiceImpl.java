@@ -40,8 +40,9 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public void save(Tool theTool) {
+    public Tool save(Tool theTool) {
         toolRepository.save(theTool);
+        return theTool;
     }
 
     @Override
@@ -55,9 +56,10 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public void update(Tool theTool) {
+    public Tool update(Tool theTool) {
         System.out.println("Update controller activated");
         this.save(theTool);
+        return theTool;
     }
 
     @Override
