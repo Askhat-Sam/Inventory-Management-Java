@@ -23,15 +23,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" th:action="@{/tools/addNew}" method="POST">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Parent barcode id" name="parentBarcodeId">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Part number" name="partNumber">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Serial number" name="serialNumber">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" name="description">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Location" name="location">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Shelf" name="shelf">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Verification type" name="verificationType">
-                    <input type="text" class="form-control mb-4 w-75" placeholder="Next due date" name="nextDueDate">
+                <form action="#" th:action="@{/tools/addNew}" th:object = "${tool}" method="GET">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Parent barcode id" th:field = "*{parentBarcodeId}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Part number" th:field = "*{partNumber}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Serial number" th:field = "*{serialNumber}">
+                    <input type="text" class="form-control mb-4 w-75" placeholder="Description" th:field = "*{description}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Location" th:field = "*{location}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Shelf" th:field = "*{shelf}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Verification type" th:field = "*{verificationType}">
+                    <input type="text" class="form-control mb-4 w-75"  placeholder="Next due date" th:field = "*{nextDueDate}">
                     <button type="submit" class="">Save</button>
                 </form>
             </div>
@@ -63,6 +63,9 @@
             </div>
         </div>
     </div>
+
+</div>
+
 
 </div>
 
@@ -104,7 +107,7 @@
 
             <!-- Button trigger modal -->
             <button type="button" class="" data-bs-toggle="modal" data-bs-target="#addModal">
-                Add tool
+                Add new tool
             </button>
         </form>
     </div>

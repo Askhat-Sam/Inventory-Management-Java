@@ -39,6 +39,9 @@ public class ToolController {
 //        System.out.println("The headers" + theHeaders);
         List<Tool> theTools = toolService.findAll(keyword);
 
+        Tool tool2 = new Tool();
+        theModel.addAttribute(tool2);
+
         List<Tool> filteredTools = new ArrayList<>();
 //        System.out.println(theTools);
         if (option!=null){
@@ -132,18 +135,9 @@ public class ToolController {
         return "redirect:/tools/list";
     }
 
-    @PostMapping("/addNew")
-    public String addTool(@RequestParam("partNumber") String partNumber, @RequestParam("serialNumber") String serialNumber,
-                          @RequestParam("description") String description, @RequestParam("location") String location){
-        //create new tool object
-        Tool theTool = new Tool(partNumber, serialNumber, description, location);
-
-        System.out.println(">>>>>>>>>>>>>Tool to be added into DB: " + theTool);
-
-        //save the new tool
-//        toolService.save(theTool);
-        toolService.update(theTool);
-        //use a redirect to prevent duplicate submission
+    @GetMapping("/addNew")
+    public String addNewTool(Tool tool){
+        toolService.update(tool);
         return "redirect:/tools/list";
     }
 
